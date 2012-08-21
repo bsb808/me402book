@@ -1,0 +1,69 @@
+
+\newglossaryentry{data acquisition system}
+{type=\thisgls,
+name={data acquisition system},
+description={Assembly of sensors, signal conditioning, digital-to-analog converter and a display or storage device for collecting physical measurements as digital records.},
+symbol={DAS or DAQ}
+}
+
+\newglossaryentry{transducer}
+{type=\thisgls,
+name=transducer,
+description={A device for converting on type of energy to another type of energy.  Examples include both sensors and actuators.}
+}
+\newglossaryentry{ratiometric}
+{type=\thisgls,
+name=ratiometric,
+description={Refers to the situation where the output (voltage) is a ratio of the supply or excitation voltage.}
+}
+\newglossaryentry{excitation voltage}
+{type=\thisgls,
+name=excitation voltage,
+description={The constant voltage supplied to power a sensor, typically a strain gage or Wheatstone bridge.}
+}
+\newglossaryentry{full scale voltage range}
+{type=\thisgls,
+name={full scale voltage range},
+description={The specified input voltage range to an ADC.  The range can be bipolar (both positive and negative, e.g., $E_{\mathrm{FSR}}=\pm\unit[1.0]{V}$) or unipolar (only positive, e.g.,  $E_{\mathrm{FSR}}=\unit[0--1.0]{V}$.)}
+symbol={\ensuremath{E_{\mathrm{FSR}}}}
+}
+\newglossaryentry{quantization error}
+{type=\thisgls,
+name={quantization error},
+description={the difference between the actual analog input to a analog-to-digital converter and the reported digital (or quantized) value.},
+symbol={\ensuremath{\pm Q/2}}
+}
+\newglossaryentry{differential input}
+{type=\thisgls,
+name={differential input},
+description={the input configuration of an A/D where the output measures the difference between two voltages (+ and -) that are independent of electrical ground.}
+}
+\newglossaryentry{single-ended input}
+{type=\thisgls,
+name={single-ended input},
+description={the input configuration of an A/D where the output measures the voltage of a single voltage (+) relative to a common electrical ground (GND).}
+}
+\newglossaryentry{sampling period}
+{type=\thisgls,
+name={sampling period},
+description={For an A/D, the duration in time between sampling events in units of time, e.g, seconds.},
+symbol={\ensuremath{dt}}
+}
+
+\newglossaryentry{sampling frequency}
+{type=\thisgls,
+name={sampling frequency},
+description={For an A/D, the frequency of sampling events which is the reciprocal of the sampling period, typically in units of Hz.},
+symbol={\ensuremath{f_s}}
+}
+\newglossaryentry{Nyquist frequency}
+{type=\thisgls,
+name={Nyquist frequency},
+description={For the output of an A/D the Nyquist frequency is the highest frequency of the signal that can be observed in the digital version of the signal.  Because the Nyquist frequency is half of the sampling frequency, it is important to sample sufficiently fast to capture all the dynamics in the input.}
+}
+
+\newglossaryentry{aliasing}
+{type=\thisgls,
+name={aliasing},
+description={The result of having energy in the input to an A/D with frequency content higher than the Nyquist frequency.  These higher frequencies are aliased into the digital representation to cause errors.}
+}

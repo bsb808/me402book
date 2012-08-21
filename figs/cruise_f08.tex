@@ -1,0 +1,43 @@
+ 
+\documentclass[10pt]{article}
+\special{papersize=8.5in,11.0in}
+\usepackage{fullpage}
+
+%\usepackage{amsmath}
+% Packages - these are explained in the original IEEE template!
+\usepackage{cite}      % Written by Donald Arseneau
+\usepackage{graphicx}  % Written by David Carlisle and Sebastian Rahtz
+\usepackage{url}       % Written by Donald Arseneau
+\usepackage{stfloats}  % Written by Sigitas Tolusis
+        
+                % Gives LaTeX2e the ability to do double column
+% From thesis main (bbing)
+\usepackage{amssymb,longtable,dcolumn}
+
+\begin{document}
+
+\begin{center}
+{\Large {\bf Cruise Control}} \\
+{\large {Dynamics (Engr 2340), Fall 2008}} 
+\end{center}
+
+\subsection*{Instructions}
+In this example we will use MATLAB to analyze one example of a first order model - the response of a car with cruise control (figure~\ref{f:msd}).
+
+\begin{figure}[htb!]
+\centerline{
+{\includegraphics[width=0.6\textwidth]{cruise_control.png}}}
+\caption{Cruise Control}
+\label{f:msd}
+\end{figure}
+
+
+\begin{enumerate}
+\item Write the equations of motion for the speed and forward motion of the car shown in figure~\ref{f:msd}.  Assume that the engine imparts a force $u(t)$ as shown.  Drag is modelled as a linear function of velocity.  Take the Laplace transform of the resulting differential equation and find the transfer function between the input $u$ and the output $v$.
+
+\item Use MATLAB to find the response of the velocity of the car for the case in which the input jumps from being $u=0$ at time $t=0$ to a constant $u=500$ N thereafter.  Assuming the car's mass is 1000 kg and b = 50 Ns/m.
+\item What is the steady-state speed increase for the specified input?
+\item How long does it take for the car to reach this steady-state speed?
+\end{enumerate}
+
+\end{document}
