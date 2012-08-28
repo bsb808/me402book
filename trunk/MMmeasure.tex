@@ -20,11 +20,12 @@ One way to describe the binary system is to compare it to the base-10, or decima
 
 \begin{table}[bt!] 
 \renewcommand{\arraystretch}{1.2}
-\caption{Four-bit binary number example}
+\caption{Four-bit binary number examples}
 \label{t:binary}
 \centering
 \begin{tabular}{|c|c|c|c||c|}\hline
-MSB & & & LSB & Base-10\\ \hline \hline
+MSB &\hspace{4ex} & \hspace{4ex}& LSB & Base-10\\ \hline \hline
+$2^3$ & $2^2$ & $2^1$ & $2^0$ & \\ \hline \hline
 0 & 0 & 0 & 0 & 0 \\ \hline
 0 & 0 & 0 & 1 & 1 \\ \hline
 0 & 0 & 1 & 0 & 2 \\ \hline
@@ -34,7 +35,10 @@ MSB & & & LSB & Base-10\\ \hline \hline
 \end{tabular}
 \end{table}
 
-Table~\ref{t:binary} illustrates how a 4-bit binary number can be used to represent an integer number.  For this example we have placed the most significant bit (MSB) on the left side and the least significant bit (LSB) on the right so that the number is read similar to how we write decimal numbers (the 10's place goes to the right of the 1's place). 
+Table~\ref{t:binary} illustrates how a 4-bit binary number can be used to represent an integer number.  For this example we have placed the most significant bit (MSB) on the left side and the least significant bit (LSB) on the right so that the number is read similar to how we write decimal numbers (the 10's place goes to the right of the 1's place). To convert to from the binary representation (the four columns on the left) to the base-10 represenation we can take each binary digit (bit) and multiply by the second row.  For example, for the sixth row in the Table~\ref{t:binary} we see
+\[
+0*(2^3)+0*(2^2)+1*(2^1)+1*(2^0) = 2+1 = 3.
+\]
 
 \begin{ex}
 What is the largest decimal integer (base-10) that can be represented by a 4-bit binary number?  (See Table~\ref{t:binary})  Write the integer in both binary (base-2) and decimal (base-10) forms.
