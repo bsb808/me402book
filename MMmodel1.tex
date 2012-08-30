@@ -179,12 +179,12 @@ Suppose we have a bulb thermometer that is at equilibrium the instant before it 
 
 Figure~\ref{f:therm} illustrates how we might analyze this system.  Newton's law of cooling says that ``the rate of heat loss of a body is proportional to the difference in temperatures between the body and the surroundings'', or, stated mathematically 
 \begin{equation}
-\dot{Q}=hA (T_f-T(t))
+\dot{Q}=hA (T_f(t)-T(t))
 \end{equation}
-where $\dot{Q}$ is the rate of heat transfer, $h$ is the heat transfer coefficient, $A$ is the surface area of the thermometer, $T_f$ is temperature of the surroundings and $T(t)$ is the temperature of the thermometer.  Furthermore the thermal energy in the thermometer mass is $Q=C(T(t))$ where $C$ is the total heat capacity (the product of the mass ($m$) and the specific heat capacity of the material ($c_p$)).  Putting this together we can come up with a first-order model for a thermometer
+where $\dot{Q}$ is the rate of heat transfer, $h$ is the heat transfer coefficient, $A$ is the surface area of the thermometer, $T_f(t)$ is temperature of the surroundings and $T(t)$ is the temperature of the thermometer.  Furthermore the thermal energy in the thermometer mass is $Q=C(T(t))$ where $C$ is the total heat capacity (the product of the mass ($m$) and the specific heat capacity of the material ($c_p$)).  Putting this together we can come up with a first-order model for a thermometer
 \begin{equation}
 \label{e:therm}
-\dot{T}(t)= \frac{hA}{C}(T_f-T(t)).
+\dot{T}(t)= \frac{hA}{C}(T_f(t)-T(t)).
 \end{equation}
 
 \begin{figure}[hbt]
