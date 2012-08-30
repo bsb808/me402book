@@ -1,4 +1,10 @@
 \chapter{Dynamic Models: Part 1}\label{c:model1}
+\renewcommand{\epigraphsize}{\small\itshape}
+\renewcommand{\epigraphwidth}{4.25in}
+\renewcommand{\epigraphrule}{0pt}
+\begin{epigraphs}
+\qitem{The best material model of a cat is another, or preferably the same cat.}{--- \textup{Arturo Rosenblueth and Norbert Wiener}, \\The Role of Models in Science, 1945.}
+\end{epigraphs}
 
 \section{All Models Are Wrong!}
 For our purposes a \emph{model} is equivalent to a \gls{mathematical model}, an equation.  We can use to understand and design a \emph{system}, a physical system which we wish to analyze.  Over the last few hundred years people with last names like Newton, Maxwell, Euler, Lagrange  and Bernoulli have come with with a variety of simple equations that describe physical processes.  The key point, that is often overlooked, is that this description is only approximate; the mathematical model and the physical system never share the same behavior.
@@ -47,7 +53,7 @@ This equation has the same form (a first-order, linear, ordinary differential eq
 
 This is meant to be an example of a model that is obviously wrong.  A physical automobile is a complex system with many, many degrees of freedom.  Our simplified model~(\ref{e:car}) is meant to do just one thing, allow us to predict how, in general, the speed of a car responds to changes in the throttle input.
 
-\section{Step Response}
+\section{Step Response}\label{s:firststep}
 One useful aspect of our first-order model~(\ref{e:first}) is that the solution to this differential equation is well known for a variety of input functions.  A particularly interesting input function is the \gls{step function} ($\mu(t)$) defined as
 \begin{equation}
 \label{e:step}
