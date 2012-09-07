@@ -45,6 +45,7 @@
 \newglossary{model1}{cgls}{cglo}{Glossary}
 \newglossary{model2}{dgls}{dglo}{Glossary}
 \newglossary{compare}{egls}{eglo}{Glossary}
+\newglossary{strain}{fgls}{fglo}{Glossary}
 \makeglossaries
 \newcommand{\myglssym}[1] {\gls{#1}~(\glssymbol{#1})}
 \newcommand{\thisgls}{temp}  % define the current glossary (type in the _gls.tex files)
@@ -178,6 +179,12 @@ of a textbook, which can be converted to other formats and printed.
 \renewcommand{\thisgls}{compare}
 \input{MMcompare_gls}
 \input{MMcompare}
+\printglossary[type=\thisgls]
+\glsresetall
+
+\renewcommand{\thisgls}{strain}
+\input{MMstrain_gls}
+\input{MMstrain}
 \printglossary[type=\thisgls]
 \glsresetall
 
