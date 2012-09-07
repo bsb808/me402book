@@ -23,9 +23,14 @@ where $h$ is the height of the beam cross-section and $I$ is the second moment o
 \[
 \epsilon = \frac{F(x-l)(h/2)}{EI}
 \]
-We can then solve for the tip force and the tip displacement as a function of the measured strain.
-\[ F = \left( \frac{EI}{(x-l)(h/2)} \right) \epsilon \]
-\[ y_{max}=\left( \frac{l^3}{3(x-l)(h/2)} \right) \epsilon \]
+We can then solve for the tip force and the tip displacement as a function of the measured strain:
+\begin{equation}\label{e:strainf}
+F = \left( \frac{EI}{(x-l)(h/2)} \right) \epsilon 
+\end{equation}
+\begin{equation}\label{e:straine}
+y_{max}=\left( \frac{l^3}{3(x-l)(h/2)} \right) \epsilon.
+\end{equation}
+These two equations are models of the response of a cantilevered beam. The first model (\ref{e:strainf}) predicts the force at the free end of the beam ($F$) as a function of the strain.  The second model (\ref{e:straine}) predicts the displacement at the free end of the beam as a function of the strain.
 
 \section{Sensor: Strain Gage}
 In our example we are going to use a stain gage to measure the deformation (strain) at one location in our bending beam.  Based on this estimate of deformation we can infer the strain and stress in the structure as well as the motion of the beam.  The sensor we will use is a \gls{strain gage} or more specifically, a bonded resistance strain gage.  This sensor, illustrated in Figure~\ref{f:strain} is a very common measurement tool for mechanical systems.  The type of strain gage we are considering is bonded to a surface so that when that element is deformed, the strain gage is deformed by the same amount.  This deformation causes the resistance of the foil grid (see Figure~\ref{f:strain}) to change according to the relationship
@@ -71,9 +76,14 @@ There are other implementations of the Wheatstone bridge such as half-bridge and
 \end{figure}
 
 By putting these components together we can build a complete data acquisition system for measuring strain as illustrated in Figure~\ref{f:straindaq}. To describe the mathematical relationship between physical strain and the analog voltage measured by the A/D we combine (\ref{e:gage}) and (\ref{e:bridge}) to generate the expression
-\begin{equation}
+\begin{equation} \label{e:gagebridge}
 V_o \approx V_s\left( \frac{(\mathrm{GF})\epsilon}{4} \right).
 \end{equation}
+
+\section{Exercises}
+\begin{ex}
+Using (\ref{e:strainf}) and (\ref{e:gagebridge}) derive a mathematical model (an equation) that predicts the voltage output of the Wheatstone bridge ($V_o$) as a function of the applied load at the free end of the beam.
+\end{ex}
 
 
 
