@@ -46,6 +46,7 @@
 \newglossary{model2}{dgls}{dglo}{Glossary}
 \newglossary{compare}{egls}{eglo}{Glossary}
 \newglossary{strain}{fgls}{fglo}{Glossary}
+\newglossary{linear}{ggls}{gglo}{Glossary}
 \makeglossaries
 \newcommand{\myglssym}[1] {\gls{#1}~(\glssymbol{#1})}
 \newcommand{\thisgls}{temp}  % define the current glossary (type in the _gls.tex files)
@@ -79,7 +80,7 @@
 \begin{document}
 
 \newif\ifsolutions
-\solutionstrue
+%\solutionstrue
 
 \graphicspath{{./}{./figs/}}
 
@@ -138,9 +139,9 @@
 \frontmatter
 % Book title
 \ifsolutions
-\newcommand{\thetitle}{Models to Measurements: \\Observing Dynamic Systems}
+\newcommand{\thetitle}{Models to Measurements: \\Observing Dynamic Systems \\ WITH SOLUTIONS}
 \else
-\newcommand{\thetitle}{Models to Measurements: \\Observing Dynamic Systems \\ Solutions}
+\newcommand{\thetitle}{Models to Measurements: \\Observing Dynamic Systems}
 \fi
 \title{\thetitle}
 \author{Brian Bingham}
@@ -203,6 +204,12 @@ of a textbook, which can be converted to other formats and printed.
 \renewcommand{\thisgls}{strain}
 \input{MMstrain_gls}
 \input{MMstrain}
+\printglossary[type=\thisgls]
+\glsresetall
+
+\renewcommand{\thisgls}{linear}
+\input{MMlinear_gls}
+\input{MMlinear}
 \printglossary[type=\thisgls]
 \glsresetall
 
