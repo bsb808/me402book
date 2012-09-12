@@ -44,6 +44,28 @@ Table~\ref{t:binary} illustrates how a 4-bit binary number can be used to repres
 What is the largest decimal integer (base-10) that can be represented by a 4-bit binary number?  (See Table~\ref{t:binary})  Write the integer in both binary (base-2) and decimal (base-10) forms.
 \end{ex}
 
+\ifsolutions
+
+\begin{soln}
+See Table~\ref{t:binarys}.  The maximum number we can represent is 15.  The minimum number is 0.
+\begin{table*}[bt!] 
+\renewcommand{\arraystretch}{1.2}
+\caption{Solution}
+\label{t:binarys}
+\centering
+\begin{tabular}{|c|c|c|c||c|}\hline
+MSB &\hspace{4ex} & \hspace{4ex}& LSB & Base-10\\ \hline \hline
+$2^3$ & $2^2$ & $2^1$ & $2^0$ & \\ \hline \hline
+1 & 1 & 1 & 1 & 1 \\ \hline
+\end{tabular}
+\end{table*}
+\[ (1)*2^3+(1)*2^2+(1)*2^1+(1)*2^0 = 15 \]
+
+\end{soln}
+
+\fi
+
+
 The number of bits determines the number of integers that can be represented.  For a 1-bit number can represent $\{0,1\}$, a 2-bit number can represent $\{0,1,2,3\}$, a 3-bit number can represent $\{0,1,2,3,4,5,6,7\}$, etc.  Finally, an M-bot number can represent $2^M$ in integers.  
 
 \section{The Digital Ruler}
@@ -73,6 +95,16 @@ So, in reality we might report our measurement as \unit[0.57]{m} with a resoluti
 \begin{ex}
 If we had a digital ruler with twice the number of bits (6-bits instead of 3-bits) what would be the resolution of our measurement be (with engineering units)?
 \end{ex}
+
+\ifsolutions
+\begin{soln}
+\[
+Q = \frac{FSR}{2^6} = \frac{1.0}{64} = \unit[0.0156]{m}
+\]
+The answer must have a number and units (m).
+\end{soln}
+\fi
+
 
 \section{Digital Measurements in an Analog World}
 \label{s:dac}
@@ -108,6 +140,14 @@ Consider an analog-to-digital converter with the following properties:
 What is the resolution (in Volts) of the ADC?  If the input to the ADC was \unit[3.14]{V}, what binary number would be output by the ADC?
 \end{ex}
 
+\ifsolutions
+\begin{soln}
+\[ 
+Q = \frac{2.0}{2^{12}} = \unit[0.0005]{V}
+\]
+The second part is a bit of a trick question.  Because the input is larger than the FSR, then the output would be the maximum value of the ADC - which is $2^{12}$ or 4,096.  
+\end{soln}
+\fi
 
 \section{Summary}
 The point of all this is the following:

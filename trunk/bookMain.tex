@@ -78,6 +78,9 @@
 
 \begin{document}
 
+\newif\ifsolutions
+\solutionstrue
+
 \graphicspath{{./}{./figs/}}
 
 %\include{../latexlib/latex_cmds/Commands}  % shortcuts to thesis stuff
@@ -118,18 +121,33 @@
 \theoremstyle{myex}
 \newtheorem{ex}{Exercise}[chapter]
 
+\newtheoremstyle{mysoln}% name
+     {9pt}%      Space above
+     {9pt}%      Space below
+     {\itshape}%         Body font
+     {}%         Indent amount (empty = no indent, \parindent = para indent)
+     {\bfseries}% Thm head font
+     {}%        Punctuation after thm head
+     {9pt}%     Space after thm head: " " = normal interword space;
+           %       \newline = linebreak
+     {}%         Thm head spec (can be left empty, meaning `normal')
 
+\theoremstyle{mysoln}
+\newtheorem*{soln}{Solution}
 
 \frontmatter
 % Book title
+\ifsolutions
 \newcommand{\thetitle}{Models to Measurements: \\Observing Dynamic Systems}
+\else
+\newcommand{\thetitle}{Models to Measurements: \\Observing Dynamic Systems \\ Solutions}
+\fi
 \title{\thetitle}
 \author{Brian Bingham}
-\date{Version 0.1}
+\date{Version 0.2}
 
 % Title Page
 \maketitle
-.
 \vspace{2in} % move below the horiz. line
  
 \begin{center}

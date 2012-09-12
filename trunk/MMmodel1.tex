@@ -127,7 +127,7 @@ Consider the step response to our car model (\ref{e:car2}) with the following pa
 \end{ex}
 
 \begin{ex}
-Consider the step response to our car model (\ref{e:car2}) with the following parameters: mass = \unit[750]{kg}, drag coefficient = \unitfrac[150]{m}{s}.
+Consider the step response to our car model (\ref{e:car2}) with the following parameters: mass = \unit[750]{kg}, drag coefficient = \unitfrac[150]{Ns}{m}.
 \begin{itemize}
 \item What is the minimum step input amplitude ($F_{\mathrm{min}}$ that would cause our ``car'' to go from \unit[0--60]{mph}?
 \item Based on this minimum step input amplitude, how long does it take for the ``car'' to go from \unit[0--60]{mph}?
@@ -139,6 +139,22 @@ Consider the step response to our car model (\ref{e:car2}) with the following pa
  \end{itemize}
 \end{itemize}
 \end{ex}
+
+\ifsolutions
+\begin{soln}
+Here is a solution.
+\begin{itemize}
+\item The steady-state value is $V_{ss}=F/b$ and \unit[60]{mph} is approximately \unitfrac[27]{m}{s}.  Since $b=\unitfrac[150]{Ns}{m}$, $F_{min}=\unit[4050]{N}$.
+\item Interestingly the car never truly gets all the way to the final steady-state value!  After five time constants ($t=5\tau$=\unit[25]{s}) the car is 99\% of the way to \unit[60]{mph}
+\item If we double this input force...
+\begin{itemize}
+\item The car takes about \unit[4]{s} to get to \unit{60}{mph} (\unitfrac[27]{m}{s}).
+\item The new top speed is double of the original top speed---\unit[120]{m/s}.  This is because the system is linear!
+\item Again, it never really gets there.  It gets 99\% of the way there after five time constants (\unit[25]{s}).
+\end{itemize}
+\end{itemize}
+\end{soln}
+\fi
 
 \section{Free Response}
 Another useful time response of our first-order model is the response with no input ($f(t)=0$) and an initial condition ($y(0)=y_o$).  The solution to (\ref{e:first}) under these conditions is 
@@ -198,3 +214,17 @@ where $\dot{Q}$ is the rate of heat transfer, $h$ is the heat transfer coefficie
 Using (\ref{e:therm}) rearrange the terms so that the expression has the same form as our canonical first-order model (\ref{e:first}).    What is the input to our model?  What is the output of our model?  What is the time constant of this model?  What is the steady-state temperature predicted by this model?
 \end{ex}
 
+\ifsolutions
+\begin{soln}
+\[ 
+\dot{T}(t)+\frac{hA}{C}(T(t)) = \frac{hA}{C} (T_f(t)) 
+\]
+where $\tau = \frac{C}{hA}$.
+\begin{itemize}
+\item The input is the temperature of the surrouding fluid---$T_f(t)$.
+\item The output is the temperature of the sensor---$T(t)$.
+\item The time constant is $\tau = \frac{C}{hA}$
+\item The steady state temperature is $T_{ss}=T_f$.
+\end{itemize}
+\end{soln}
+\fi
