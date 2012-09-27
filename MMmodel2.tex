@@ -178,7 +178,7 @@ The resulting expression for the first natural frequency, in \unitfrac[]{rad}{s}
 \begin{equation}\label{e:blevins}
 \omega_n = \frac{(1.875)^2}{L^2} \sqrt{\left( \frac{EI}{\rho} \right)}
 \end{equation}
-where $rho$ is the mass per unit length of the beam, $E$ is the modulus of elasticity of the beam material, $I$ is the area moment of inertia of the beam and $L$ is the length of the beam. 
+where $\rho$ is the mass per unit length of the beam, $E$ is the modulus of elasticity of the beam material, $I$ is the area moment of inertia of the beam and $L$ is the length of the beam. 
 
 \subsection{First-Mode of Cantilevered Beam with Added Mass}
 Similarly, it is possible to predict the natural frequency of a uniform cantilevered beam with a point-mass at the free end of the beam as illustrated in Figure~\ref{f:blevinsmass}.
@@ -202,7 +202,7 @@ Given a uniform cantilevered beam with the following properties:
 \begin{itemize}
 \item Length = \unit[0.5]{m}
 \item Width = \unit[2.54]{cm}
-\item Thickness = \unit[1.58]{mm}
+\item Thickness = \unit[1.59]{mm}
 \item Modulus of Elasticity ($E$) = \unit[68.9]{GPa}
 \item Density = \unitfrac[2.70]{g}{cm$^3$}
 \end{itemize}
@@ -227,7 +227,7 @@ For physical systems that exhibit oscillatory response we can ``fit'' a second-o
 \label{f:secondfreeresp}
 \end{figure}
 
-\subsubsection{Measuring Frequency}
+\subsection{Measuring Frequency}
 It may be obvious, but if for no other reason than to get the units (\unit[]{Hz} and \unitfrac[]{rad}{s}) it is worth spending a little time discussing how to measure the frequency of oscillation from a measured response.  Since our measurements are of the {\bf time} response, we will need to start by estimating the period of oscillation, the time it takes for one cycle of oscillation.  We could do this by measuring the time between two adjacent peaks in the response, but a better way is to measure the elapsed time ($\Delta t$) between two peaks (or troughs, or zero-crossings) of the response and the number of cycles ($n$) as illustrated in Figure~\ref{f:secondtime}.
 \begin{figure}[h!bt]
 \centerline{
@@ -253,7 +253,7 @@ It is important to notice that what we have estimated here is the {\bf damped} n
 \end{equation}
 To estimate $\omega_n$ we'll need to know (to estimate) the damping ratio ($\zeta$).
 
-\subsubsection{Measuring the Damping Ratio Via Logarithmic Decrement Method}
+\subsection{Measuring the Damping Ratio Via Logarithmic Decrement Method}
 
 The logarithmic decrement method is a technique to empirically identify the damping ratio ($\zeta$) of a second-order underdamped model.  The method is based on the characteristic time response of the model.  The time response can be either the response to a step input or the free-response to a non-zero initial condition.  The free-response to an initial condition is given in your textbook as
 \begin{equation}
@@ -267,9 +267,8 @@ where $n$ is the number of cycles between $y_0$ and $y_n$.
 Finally calculate the damping ratio as
 \[ \zeta = \frac{1}{\sqrt{1+\left(\frac{2\pi}{\delta}\right)^2}} \]
 
-\subsection*{Example}
-Figure \ref{f:resp} illustrates the free response of a second-order model to an initial condition of $y(0)=0.01$ and $\dot{y}(0)=0$.  The undamped natural frequency is $2 \pi$ rad/s.
-
+\subsubsection{Example}
+Figure \ref{f:secondfreeresp} illustrates the free response of a second-order model to an initial condition of $y(0)=0.01$ and $\dot{y}(0)=0$.  The undamped natural frequency is \unitfrac[$2 \pi$]{rad}{s}.
 
 To calculate the logarithmic decrement we need to select two peaks from the response as shown in Figure~\ref{f:resp2}\footnote{The MATLAB function \texttt{ginput()} is handy for selecting the values from a figure window.}. These selected values, along with the equations above, result in $\delta=0.124$ and $\zeta=0.0198$.  This estimate is quite close to the value of 0.02 which was used to generate the example.
 
@@ -282,7 +281,7 @@ To calculate the logarithmic decrement we need to select two peaks from the resp
 
 %\afterpage{\clearpage}
 
-\subsection*{Why It Works}
+\subsubsection{Why It Works}
 The logarithmic decrement method is based on fitting a curve to the data.  In this case the curve (the model) is the exponential amplitude of the second-order response
 \begin{equation}
 y_{env}(t)=C e^{-\zeta\omega_nt}
