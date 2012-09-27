@@ -39,12 +39,13 @@ where $m$ is the mass, $b$ is the linear damping coefficient, $k$ is the linear 
 Using (\ref{e:second}) and (\ref{e:msd}), derive expressions for the system parameters ($\omega_n$ and $\zeta$) in terms of the physical parameters ($m$, $b$, and $k$).  (Hint: Use physical units to check your answers.)
 \end{ex}
 
-\ifsolutions
+%\ifsolutions
 \begin{soln}
+You should verify that the following expressions are correct:
 \[ \omega_n = \sqrt{k/m} \; \; \; \unitfrac[]{rad}{s}\]
 \[ \zeta = \frac{b}{2 \sqrt{mk}} \; \; \; \unitfrac[]{n}{a} \]
 \end{soln}
-\fi
+%\fi
 
 
 \section{Free Response}\label{s:secondfree}
@@ -197,7 +198,7 @@ where $M$ is the point mass at the free end of the beam and $M_b$ is the total m
 Notice that both predicted natural frequencies (\ref{e:blevins}) and (\ref{e:blevinsmass}) have the general from of $\omega_n = \sqrt{K/M}$ where $K$ is the ``stiffness'' of the system and $M$ is the ``mass'' of the system.
 
 
-\begin{ex}
+\begin{ex}\label{ex:beamvib}
 Given a uniform cantilevered beam with the following properties:
 \begin{itemize}
 \item Length = \unit[0.5]{m}
@@ -206,13 +207,13 @@ Given a uniform cantilevered beam with the following properties:
 \item Modulus of Elasticity ($E$) = \unit[68.9]{GPa}
 \item Density = \unitfrac[2.70]{g}{cm$^3$}
 \end{itemize}
-Predict the undamped natural frequency in \unit[]{rad}{s} and \unit[]{Hz}.
+Predict the undamped natural frequency.  Express the answer in both of the following units: \unitfrac[]{rad}{s} and \unit[]{Hz}.
 \end{ex}
 
 \begin{ex}
 Given the uniform cantilevered beam described in the previous example, and a damping ratio of $\zeta=0.02$ (2\% damping)...
 \begin{itemize}
-\item Write an expression for a mathematical model of the form in (\ref{e:second}) to describe the system.
+\item Write an expression for a mathematical model of the form in (\ref{e:second}) to describe the system.  (You should just need to substitute in numerical values for the system parameters $\zeta$ and $\omega_n$.)
 \item Using MATLAB, produce a graph that predicts the response of the tip of the cantilevered beam to an initial displacement of \unit[1.0]{cm}.
 \end{itemize}
 \end{ex}
