@@ -20,9 +20,9 @@ Two quantities of the response of the beam that we'd like to be able to predict 
 \sigma_x=\frac{M(h/2)}{I}
 \]
 where $h$ is the height of the beam cross-section and $I$ is the second moment of area of the beam cross-section.  We can use the linear relationship for elastic stress and strain ($\sigma_x = E \epsilon$) to find an expression for the strain at any location $x$ along the beam.
-\[
+\begin{equation}\label{e:eps}
 \epsilon = \frac{F(x-l)(h/2)}{EI}
-\]
+\end{equation}
 We can then solve for the tip force and the tip displacement as a function of the measured strain:
 \begin{equation}\label{e:strainf}
 F = \left( \frac{EI}{(x-l)(h/2)} \right) \epsilon 
@@ -82,9 +82,15 @@ V_o \approx V_s\left( \frac{(\mathrm{GF})\epsilon}{4} \right).
 
 \section{Exercises}
 \begin{ex}
-Using (\ref{e:strainf}) and (\ref{e:gagebridge}) derive a mathematical model (an equation) that predicts the voltage output of the Wheatstone bridge ($V_o$) as a function of the applied load at the free end of the beam.
+Using (\ref{e:eps}) and (\ref{e:gagebridge}) derive a mathematical model (an equation) that predicts the voltage output of the Wheatstone bridge ($V_o$) as a function of the applied load at the free end of the beam.
 \end{ex}
-
+\ifsolutions
+\begin{soln}
+\[
+V_o \approx V_s\left( \frac{\mathrm{GF}}{4} \right) \left(\frac{F(x-l)(h/2)}{EI}\right)
+\]
+\end{soln}
+\fi
 
 
 
