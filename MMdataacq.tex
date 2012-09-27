@@ -33,6 +33,7 @@ A \gls{transducer} is a device that converts one type of energy into another typ
 Following the pattern in the list above, list two more transducers that are sensors and two more transducers that are actuators.
 \end{ex}
 
+
 There are many, many types of sensors.  For just about everything we can imagine wanting to measure there is a device that will convert the physical parameter to an electrical signal that we can use for data aquisition.  For our purposes we will focus on sensors that measure mechanical quantities (motion, strain, temperature, etc.) by producing an electrical output.  The next step is converting that electrical output into a form that our D/A can accept.  
 
 \subsection{Sensitivity}
@@ -47,9 +48,9 @@ A Type K thermocouple is a common sensor for measuring temperature, and the typi
 A complication that can arise is when the sensitivity of a sensor is not a constant.  This can happen if there is a non-linear relationship between the physical parameter and the output.  In this case we may have to use a mathematical relation (i.e., a formula, hopefully supplied by the sensor datasheet) to convert the output signal (voltage) to the physical measurement.  Another situation is when the output depends on the supplied voltage, which is called a \gls{ratiometric} sensitivity.  In fact, I oversimplified the ADXL 335 sensitivity.  This sensor requires a supply voltage, sometimes referred to as the \gls{excitation voltage}, to power the sensor.  The typical supply voltage is \unit[3.0]{V}, but the value can range between \unit[1.8--3.6]{V}.  The sensitivity is directly proportional to this supply voltage, so with a supply of \unit[1.8]{V} we can expect a sensitivity of \unitfrac[180]{mV}{g}.  
 
 Another common example of a ratiometric sensitivity is a load cell.  As its name implies, a load cell is a sensor that reports a load (tension or compression) as a voltage.  A common type of load cell is S-Beam load cell that uses a configuration of strain gages to measure the strain in a mechanical beam.  The beam is calibrated so that the relationship between the strain and the applied force is known.  The sensitivity of this type of sensor is specified in a confusing manner.  For example, a typical device will come in a range of load capacities, say \unit[25-10,000]{lb}.  For this family of devices the sensitivity might be quoted as \unitfrac[3]{mV}{V}.  What on earth does this mean you ask?  Well, it means that at the maximum load, the output voltage is \unit[3]{mV} multiplied by the excitation voltage.  They typical excitation voltage of this particular device is \unit[10]{V}.  So, if we have a load cell rated at \unit[100]{lb} and we apply the recommended excitation of \unit[10]{V}, the sensitivity is \unitfrac[0.3]{mV}{lb}.  In other words, we can find the sensitivity (\unitfrac[S]{mV}{lb}) as
-\[
+\begin{equation}\label{e:sens}
 \unitfrac[S]{[mV}{lb]} = \frac{(\unitfrac[O]{[mV}{V]})(\unit[E]{[V]})}{\unit[L_{max}]{[lb]}}
-\]
+\end{equation}
 where \unitfrac[O]{[mV}{V]} is the ratiometric output of the load cell, \unit[E]{[V]} is the excitation voltage and \unit[L$_{\mathrm{max}}$]{[lb]} is the maximum load capacity for the device.
 \begin{ex}
 Suppose we want to use two AA alkaline batteries to power our ADXL 335 accelerometer.  What sensitivity could we expect with this arrangement?
@@ -62,6 +63,26 @@ Consider that we are using a thin-beam load cell (Omega LCL Series) with a maxim
 \item What is the voltage we could expect if we apply a \unit[0.25]{lb} load?
 \end{itemize}
 \end{ex}
+
+\ifsolutions
+\begin{soln}
+The sensitivity is calculated using (\ref{e:sens}).
+\[
+\unitfrac[S]{[mV}{lb]} = \frac{(\unitfrac[2.0]{[mV}{V]})(\unit[5.0]{[V]})}{\unit[1.0]{[lb]}} = \unitfrac[10.0]{mV}{lb}
+\]
+
+The maximum voltage is the product of the maximum load and the sensitivity.
+\[
+V_{max} = \unitfrac[10]{mV}{lb} (\unit[1]{lb}) = \unit[10]{mV}
+\]
+
+Again, this is the product of the senitivity and the load.
+\[
+V_{max} = \unitfrac[10]{mV}{lb} (\unit[0.25]{lb}) = \unit[2.5]{mV}
+\]
+\end{soln}
+\fi
+
 
 \section{Signal Conditioning}
 Sensors often have an output that is inconvenient to use with digital-to-analog converters.  As we alluded to in Chapter~\ref{c:measure}, digital-to-analog converters typically take a voltage as input and it is important that we use the full range of the voltage that the D/A will accept (e.g., \unit[0--10]{V}).  
@@ -126,6 +147,17 @@ Q = \frac{E_{\mathrm{FSR}}}{2^M-1}.
 \end{itemize}
 \end{ex}
 
+\ifsolutions
+\begin{soln}
+
+There are many answers to this.  The point is that the student think about what is going on here.
+\begin{itemize}
+\item In general, for an $M$-bit A/D there are $2^M$ possible outputs.  However, the distance between each level is $E_{FSR}/(2^M-1)$ which is more correctly associated with the resolution of the A/D
+\item For any reasonably large number of bits there the is a negligible difference between these expressions.  For example, $2^{24}=16,777,216$ and $2^{24}-1=16,777,215$.  The point is that either expression is sufficient.
+\end{itemize}
+\end{soln}
+\fi
+
 \subsection{Differential Versus Single-Ended}
 When connecting a voltage input to an A/D there are two important options: differential or single-ended input. \Gls{single-ended input} consists of a common ground (GND) that is shared between all the inputs to the A/D.  The A/D output is based on the voltage measured between the signal input (+) and ground.  In contrast \gls{differential input} consists of two voltage inputs, high (+) and low (-), which may or may not be referenced to a common GND potential.  The A/D output is then based on the voltage difference (hence differential) between the signal high and signal low potentials.  Here are some advantages of each approach:
 \begin{itemize}
@@ -187,6 +219,12 @@ where $f_{\mathrm{max}}$ is the \gls{Nyquist frequency}, the maximum frequency o
 \begin{ex}
 What would be the minimum sampling frequency for the analog signal illustrated in Figure~\ref{f:sample}?  What would be the cooresponding Nyquist frequency?
 \end{ex}
+
+\ifsolutions
+\begin{soln}
+The signal in the figure has a single frequency of \unit[1]{Hz}; this is the Nyquist frequency.  To create a digital representation of this signal we'd need to sample at a minimum rate of \unit[2]{Hz}.
+\end{soln}
+\fi
 
 \subsection{Anti-Aliasing}\label{s:alias}
 What happens when we violate this sampling rule-of-thumb?  Let's work through an illustrative example similar to the illustration from Figure~\ref{f:sample}. Considering our simple sine wave input that changes amplitude with a frequency of \unit[1.0]{Hz}.  If we use our rule-of-thumb and set the sampling frequency to $f_s=\unit[10]{Hz}$ we will end up with a digital representation, illustrated in Figure~\ref{f:alias_x10}, that looks pretty much like the original analog signal.  \emph{If we sample ``fast enough'' the digital output will be a close approximation to the analog input.} 
