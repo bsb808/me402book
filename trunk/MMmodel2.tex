@@ -3,7 +3,7 @@
 \section{Second-Order Model}
 We will use \gls{second-order model} as shorthand for a linear, ordinary, time-invariant second-order differential equation of the form
 \begin{equation} \label{e:second}
-\ddot{y}(t) + 2 \zeta \omega_n \dot{y}(t) + \omega_n^2 = f(t)
+\ddot{y}(t) + 2 \zeta \omega_n \dot{y}(t) + \omega_n^2 y(t) = f(t)
 \end{equation} 
 where 
 \begin{itemize}
@@ -191,7 +191,7 @@ The resulting expression for the first natural frequency, in \unitfrac[]{rad}{s}
 \begin{equation}\label{e:blevins}
 \omega_n = \frac{(1.875)^2}{L^2} \sqrt{\left( \frac{EI}{\rho} \right)}
 \end{equation}
-where $\rho$ is the mass per unit length of the beam, $E$ is the modulus of elasticity of the beam material, $I$ is the area moment of inertia of the beam and $L$ is the length of the beam. 
+where $\rho$ is the mass per unit length of the beam, $E$ is the modulus of elasticity of the beam material, $I$ is the second moment of area of the beam and $L$ is the length of the beam. 
 
 \subsection{First-Mode of Cantilevered Beam with Added Mass}
 Similarly, it is possible to predict the natural frequency of a uniform cantilevered beam with a point-mass at the free end of the beam as illustrated in Figure~\ref{f:blevinsmass}.
@@ -227,7 +227,7 @@ Predict the undamped natural frequency.  Express the answer in both of the follo
 Use (\ref{e:blevins}) with the values from the Exercise.  The mass-per-unit-length is the product of the density and the cross-sectional area:
 \[ \rho = D*(t*W) \]
 where $D$ is the density, $t$ is the beam thickness and $W$ is the beam width.
-We also need to calculate the area moment of inertia...
+We also need to calculate the second moment of area...
 \[ I = 1/12(W*t^3) \]
 If we plug in these values we get...
 \[ \omega_n = \unitfrac[32.6]{rad}{s} \]
