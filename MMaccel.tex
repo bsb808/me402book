@@ -26,6 +26,16 @@ Ideally we would choose the gain of our amplifier such that the maximum anticipa
 What would be an appropriate gain setting for an amplifier that we would use in the DAQ system shown in Figure~\ref{f:strainampdaq}?
 \end{ex}
 
+\ifsolutions
+\begin{soln}
+First we need to predict the maximum voltage that we might anticipate from the Wheatstone bridge.  Using (\ref{e:gagebridge}
+\[
+V_o \approx V_s\left( \frac{(\mathrm{GF})\epsilon}{4} \right).
+\]
+and the parameters in the exercise we can anticipate the the maximum voltage output $V_o \unit[4.5]{mV}$.  We would like to amplifiy this so that the output of the amplifier is equivalent to the full scale range (\unit[1]{V}).  A gain of 222.2 would give us exactly \unit[1]{V} of maximum output.
+\end{soln}
+\fi
+
 \section{Accelerometer}
 Unsurprisingly an accelerometer is a device for measuring acceleration.  Below are exercises to explore the application of a particular accelerometer to measuring the free response of a cantilevered beam.
 
@@ -42,11 +52,40 @@ Look-up the datasheet for the Analog Devices ADXL 335 accelerometer.  (The datas
 \end{itemize}
 \end{ex}
 
+\ifsolutions
+\begin{soln}
+
+\end{soln}
+\fi
+
+
 
 \begin{ex}
 Given the cantilevered beam properties described in Exercise~\ref{ex:beamvib} and the free response of the model given in (\ref{e:damped}),
 \begin{itemize}
-\item What is the maximum acceleration at the free-end of the beam  you might anticipate for the free response of the system with the following initial conditions: $y(0)=\unit[10]{cm}$ and $\dot{y}(0)=0$? (Hint: you will need to differentiate the expression (\ref{e:damped}) and you can assume $\zeta=0$ and $\phi=0$. Check your units!)
+\item What is the maximum acceleration at the free-end of the beam  you might anticipate for the free response of the system with the following initial conditions: $y(0)=\unit[10]{cm}$ and $\dot{y}(0)=0$? (Hint: you will need to differentiate the expression (\ref{e:secondfree}) and you can assume $\zeta=0$ and $\phi=0$. Check your units!)
 \item Given this maximum acceleration and the sensitivity of the ADXL 335 from the previous exercise, what is the maximum voltage you should expect as output from an ADXL 335 mounted at the free-end of the beam?
 \end{itemize}
 \end{ex}
+
+\ifsolutions
+\begin{soln}
+We need to differentiate twice the expression from (\ref{e:secondfree}) with $\zeta=0$ and $\phi=0$.  
+\[
+y(t) = C \left( \cos(\omega_n t ) \right)
+\]
+Using (\ref{e:C}) to evaluate the constant $C$ with these conditions we find that $C=y_o$, so...
+\begin{eqnarray}
+y(t) & = & y_o \left( \cos(\omega_n t ) \right) \\
+\dot{y}(t) & = & y_o * \omega_n \left(-\sin(\omega_n t ) \right) \\
+\ddot{y}(t) & = & y_o * \omega_n^2 \left( -\cos(\omega_n t ) \right) \\
+\ddot{y}(t) & = & \unit[10]{cm} (\unitfrac[32.6]{rad}{s})^2 \left( -\cos(\omega_n t ) \right) \\
+\ddot{y}(t) & = & \unit[10]{cm} (\unitfrac[32.6]{rad}{s})^2 \left( -\cos(\omega_n t ) \right) \\
+\ddot{y}(t) & = & \unitfrac[106]{m}{s^2} \left( -\cos(\omega_n t ) \right) \\
+\ddot{y}(t) & = & \unit[10.8]{g} \left( -\cos(\omega_n t ) \right) 
+\end{eqnarray}
+So the amplitude of the acceleration is \unit[10.8]{g}.  The sensitivity of the ADXL 335 is \unit[300]{mV}{g} which indicates that the maximum output from the accelerometer is $10.8*300 = \unit[3240]{mV} = \unit[3.24]{V}$. However, the maximum acceleration the device can sense is $\pm\unit[3]{g}$, so we should probably start with an initial displacement of less than \unit[10]{cm}!
+\end{soln}
+\fi
+
+

@@ -102,7 +102,7 @@ label={l:secondfree}]
 
 \begin{ex}
 There is a mistake in Listing~\ref{l:secondfree} which attempted to display the solution for the case where there is only a ``displacement'' initial condition: i.e., $y(0)=y_o$ and $\dot{y}(0)=0$.  The mistake is that the solution in the code uses the values $C=y_o$ and $\phi=0$ which are not correct (but they are close). 
-\begin{itemize}
+\begin{itemize}\label{ex:secondresp}
 \item Derive expressions for the constants $C$ and $\phi$ based on the initial conditions $y(0)=y_o$ and $\dot{y}(0)=0$.
 \item Copy the script in Listing~\ref{l:secondfree} and create the graph shown in Figure~\ref{f:secondfree}.
 \item Correct the script in Listing~\ref{l:secondfree} and plot a second curve, on the same axes, with the corrected solution for $y_o=1$.  
@@ -121,7 +121,12 @@ The error is simply in the calculation of $C$ and $\phi$; the structure of the s
 or 
 \[ \phi = \arctan\left(\frac{\zeta}{\sqrt{1-\zeta^2}}\right) \]
 
-See Figure~\ref{f:secondfreesoln}.
+See Figure~\ref{f:secondfreesoln}.  This figure is generated using Listing~\ref{l:seconfree2}
+
+\lstinputlisting[style=myMatStyle,
+caption={Script for plotting the corrected free response of a second-order model.},
+label={l:secondfree2}]
+{./code/second_order_free_correct.m}
 
 \begin{figure}[hbt]
 \centering
@@ -138,7 +143,14 @@ Consider the effect of the damping ratio ($\zeta$) on the shape of free response
 
 \ifsolutions
 \begin{soln}
-See Figure~\ref{f:secondfreezetas}
+See Figure~\ref{f:secondfreezetas} generated using Listing~\ref{l:secondfreezeta}.
+
+\lstinputlisting[style=myMatStyle,
+caption={Script for plotting the free response of a second-order model with varios values of zeta.},
+label={l:secondfreezeta}]
+{./code/second_order_free_zeta.m}
+
+
 \begin{figure}[hbt]
 \centering
 \includegraphics[width=\FigWidth\textwidth]{free_zetas.png}
@@ -210,13 +222,56 @@ Given a uniform cantilevered beam with the following properties:
 Predict the undamped natural frequency.  Express the answer in both of the following units: \unitfrac[]{rad}{s} and \unit[]{Hz}.
 \end{ex}
 
-\begin{ex}
+\ifsolutions
+\begin{soln}
+Use (\ref{e:blevins}) with the values from the Exercise.  The mass-per-unit-length is the product of the density and the cross-sectional area:
+\[ \rho = D*(t*W) \]
+where $D$ is the density, $t$ is the beam thickness and $W$ is the beam width.
+We also need to calculate the area moment of inertia...
+\[ I = 1/12(W*t^3) \]
+If we plug in these values we get...
+\[ \omega_n = \unitfrac[32.6]{rad}{s} \]
+To express in Hz
+\[ f_n = \frac{\unitfrac[\omega_n]{rad}{s}}{\unitfrac[2\pi]{rad}{cycle}} = \unitfrac[5.2]{cycles}{s}=\unit[5.2]{Hz}
+\]
+
+\lstinputlisting[style=myMatStyle,
+caption={Script for predicting the natural frequency of a cantilevered beam.},
+label={l:natlfreq}]
+{./code/natl_freq_pred.m}
+
+\end{soln}
+\fi
+
+\begin{ex}\label{ex:model2sim}
 Given the uniform cantilevered beam described in the previous example, and a damping ratio of $\zeta=0.02$ (2\% damping)...
 \begin{itemize}
 \item Write an expression for a mathematical model of the form in (\ref{e:second}) to describe the system.  (You should just need to substitute in numerical values for the system parameters $\zeta$ and $\omega_n$.)
-\item Using MATLAB, produce a graph that predicts the response of the tip of the cantilevered beam to an initial displacement of \unit[1.0]{cm}.
+\item Using MATLAB, produce a graph that predicts the response of the tip of the cantilevered beam to an initial displacement of \unit[1.0]{cm} and zero initial velocity: $y(0)=\unit[1.0]{cm}$ and $\dot{y}(0) = \unitfrac[0]{cm}{s}$.
 \end{itemize}
 \end{ex}
+
+\ifsolutions
+\begin{soln}
+\[
+\ddot{y}(t) + 2 (0.02) (32.6)\dot{y}(t) + (32.6)^2 = f(t)
+\]
+To generate the graph we can use the same script from Exercise~\ref{ex:secondresp} and substitute in the new values for $\zeta$ and $\omega_n$.
+
+\lstinputlisting[style=myMatStyle,
+caption={Script for plotting the corrected free response of a second-order model using the given beam parameters.},
+label={l:secondfreemodelsoln}]
+{./code/second_order_free_model.m}
+
+\begin{figure}[hbt]
+\centering
+\includegraphics[width=\FigWidth\textwidth]{soln_second_free_model.png}
+\caption{Graphs of the second-order free response for the predicted natural frequency from the given beam parameters.}
+\label{f:soln2freemodel}
+\end{figure}
+
+\end{soln}
+\fi
 
 \section{Measuring Second-Order Response}
 For physical systems that exhibit oscillatory response we can ``fit'' a second-order response to the system measurements to estimate the system parameters ($\omega_n$ and $\zeta$) based on the measured response.  In other words, consider that you measure the time response of a system (e.g., a cantilevered beam, a RLC circuit, etc.) and you observe that the behavior looks something like Figure~\ref{f:secondfreeresp}.  How can you estimate the natural frequency and damping ratio associated with such a response?
