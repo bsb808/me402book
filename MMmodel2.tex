@@ -49,7 +49,7 @@ You should verify that the following expressions are correct:
 
 
 \section{Free Response}\label{s:secondfree}
-The free response for our model solution to the second-order model (\ref{e:second}) initial conditions, but no forcing function---also known as the homogeneous equation,
+The free response for our model is the solution to the second-order model (\ref{e:second}) with initial conditions, but no forcing function (also known as the homogeneous equation)
 \begin{equation} \label{e:secondhomo}
 \ddot{y}(t) + 2 \zeta \omega_n \dot{y}(t) + \omega_n^2 y(t) = 0
 \end{equation} 
@@ -64,8 +64,8 @@ y(t) = C \left(e^{-\zeta \omega_n t}\right) \left( \cos(\omega_d t - \phi) \righ
 \end{equation}
 where
 \begin{eqnarray}\
-\omega_d & = & \omega_n \sqrt{1-\zeta^2} \label{e:damped} \\
-C & = & \sqrt{ y_o^2 + \left( \frac{\dot{y}_o+\zeta\omega_n y_o}{\omega_d} \right)^2 } \;\; \mathrm{and}\label{e:C} \\
+\omega_d & = & \omega_n \sqrt{1-\zeta^2}, \label{e:damped} \\
+C & = & \sqrt{ y_o^2 + \left( \frac{\dot{y}_o+\zeta\omega_n y_o}{\omega_d} \right)^2 } \;\;\;\;\;\;\;\;\; \mathrm{and}\label{e:C} \\
 \tan(\phi) & = & \frac{\dot{y}_o+\zeta \omega_n y_o}{\omega_d y_o}. \label{e:phi}
 \end{eqnarray}
 
@@ -191,7 +191,7 @@ The resulting expression for the first natural frequency, in \unitfrac[]{rad}{s}
 \begin{equation}\label{e:blevins}
 \omega_n = \frac{(1.875)^2}{L^2} \sqrt{\left( \frac{EI}{\rho} \right)}
 \end{equation}
-where $\rho$ is the mass per unit length of the beam, $E$ is the modulus of elasticity of the beam material, $I$ is the second moment of area of the beam and $L$ is the length of the beam. 
+where $\rho$ is the mass per unit length of the beam (the product of the density and the cross-section area), $E$ is the modulus of elasticity of the beam material, $I$ is the second moment of area of the beam and $L$ is the length of the beam. 
 
 \subsection{First-Mode of Cantilevered Beam with Added Mass}
 Similarly, it is possible to predict the natural frequency of a uniform cantilevered beam with a point-mass at the free end of the beam as illustrated in Figure~\ref{f:blevinsmass}.
@@ -295,11 +295,11 @@ Then we can estimate the average period of oscillation as
 \begin{equation}
 T = \frac{t_n-t_o}{n}=\frac{\Delta t}{n}=\frac{\unit[10.0]{s}}{\unit[10]{cycles}} = \unitfrac[1.0]{s}{cycle}.
 \end{equation}
-The corresponding frequency of oscillation ($f_d$ (in Hz)) is the reciprocal of the period---
+The corresponding frequency of oscillation ($f_d$ (in Hz)) is the reciprocal of the period
 \begin{equation}
 f_d = \frac{1}{T} = \frac{1}{\unitfrac[1.0]{s}{cycle}} = \unitfrac[1.0]{cycles}{s} = \unit[1.0]{Hz}.
 \end{equation}
-The last step is convert the units of this frequency from Hz to \unitfrac[]{rad}{s} with the expression
+The last step is to convert the units of this frequency from Hz to \unitfrac[]{rad}{s} with the expression
 \begin{equation}
 \omega_d = f_d (2 \pi) = \unitfrac[1.0]{cycles}{s} (\unitfrac[2 \pi]{rad}{cycle}) = \unitfrac[6.28]{rad}{s}.
 \end{equation}
@@ -321,7 +321,7 @@ To estimate the damping ratio can be estimated in the following way.  First plot
 \[ \delta = \frac{1}{n}\ln\left(\frac{y_0}{y_n}\right) \]
 where $n$ is the number of cycles between $y_0$ and $y_n$.
 Finally calculate the damping ratio as
-\[ \zeta = \frac{1}{\sqrt{1+\left(\frac{2\pi}{\delta}\right)^2}} \]
+\[ \zeta = \frac{1}{\sqrt{1+\left(\frac{2\pi}{\delta}\right)^2}}. \]
 
 \subsubsection{Example}
 Figure \ref{f:secondfreeresp} illustrates the free response of a second-order model to an initial condition of $y(0)=0.01$ and $\dot{y}(0)=0$.  The undamped natural frequency is \unitfrac[$2 \pi$]{rad}{s}.
@@ -340,7 +340,7 @@ To calculate the logarithmic decrement we need to select two peaks from the resp
 \subsubsection{Why It Works}
 The logarithmic decrement method is based on fitting a curve to the data.  In this case the curve (the model) is the exponential amplitude of the second-order response
 \begin{equation}
-y_{env}(t)=C e^{-\zeta\omega_nt}
+y_{env}(t)=C e^{-\zeta\omega_nt}.
 \label{e:env}
 \end{equation}
 This function is superimposed on the response in Figure~\ref{f:env}.
@@ -351,9 +351,9 @@ This function is superimposed on the response in Figure~\ref{f:env}.
 \label{f:env}
 \end{figure}
 
-If we take the natural logarithm of this function we get a linear relationship between $Y_{ln}=\ln(y_{env})$ and $t$.
+If we take the natural logarithm of this function we get a linear relationship between $Y_{ln}=\ln(y_{env})$ and $t$:
 \[
-Y_{ln}=\ln(y_{env})=(-\zeta \omega_n) t
+Y_{ln}=\ln(y_{env})=(-\zeta \omega_n) t.
 \]
 This linear relationship is illustrated in Figure~\ref{f:ln} where $Y_{ln}$ is plotted versus time.  The slope of the line is $m=-\zeta \omega_n$.
 \begin{figure}[hbt!]
@@ -367,33 +367,34 @@ Because we are using the second-order response model, we now just need to find t
 \begin{eqnarray}
 m & = & \frac{\ln(y_0)-\ln(y_n)}{t_0-t_n}=-\zeta \omega_n \\
 \label{e:slope} \\
-m & = & \frac{\ln(y_0)-\ln(y_n)}{t_n-t_0}=\zeta \omega_n \\
+m & = & \frac{\ln(y_0)-\ln(y_n)}{t_n-t_0}=\zeta \omega_n. \\
 \label{e:slope2}
 \end{eqnarray}
 We can use (\ref{e:slope}) or (\ref{e:slope2} directly, but we have to deal with the fact that we don't know $\omega_n$.  It is important to note that the frequency of oscillation is the damped natural frequency ($\omega_d$) which is related to the undamped natural frequency by the relationship
 \begin{equation}
-\omega_d=\omega_n\sqrt{1-\zeta^2}
+\omega_d=\omega_n\sqrt{1-\zeta^2}.
 \label{e:omegas}
 \end{equation}
 The logarithmic decrement method uses the peaks of the oscillating response to get around this trouble.  We know that the change in time is an integer number of periods of oscillation at the damped natural frequency
 \begin{equation}
-t_n-t_0 = \frac{n}{\omega_d / 2 \pi}
+t_n-t_0 = \frac{n}{\omega_d / 2 \pi}.
 \label{e:time}
 \end{equation}
-Now we can substitute (\ref{e:time}) and (\ref{e:omegas}) into (\ref{e:slope2}).
+Now we can substitute (\ref{e:time}) and (\ref{e:omegas}) into (\ref{e:slope2}) to get
 \[
 \frac{\ln\left(\frac{y_0}{y_n}\right)}{n (2 \pi)} \omega_d = \zeta \omega_n
 \]
+and
 \[
-\frac{\ln\left(\frac{y_0}{y_n}\right)}{n (2 \pi)} \omega_n \sqrt{1-\zeta^2} = \zeta \omega_n
+\frac{\ln\left(\frac{y_0}{y_n}\right)}{n (2 \pi)} \omega_n \sqrt{1-\zeta^2} = \zeta \omega_n.
 \]
-Let 
+Next, let 
 \[ \delta = \frac{1}{n}\ln\left(\frac{y_0}{y_n}\right) \]
-and we are solve for $\zeta$
+and we solve for $\zeta$
 \[
 \zeta^2=\frac{\left(\frac{\delta}{2 \pi}\right)^2}{1+\left(\frac{\delta}{2 \pi}\right)^2}
 \]
-\[ \zeta = \frac{1}{\sqrt{1+\left(\frac{2\pi}{\delta}\right)^2}} \]
+\[ \zeta = \frac{1}{\sqrt{1+\left(\frac{2\pi}{\delta}\right)^2}}. \]
 
 It is interesting to consider that the logarithmic decrement method is doing this linear-fit with just two data points.  It would be interesting to do this linear fit with multiple data points using a least-squares approach to identify the damping ratio.  One advantage (along with a more precise result) is that you would be able to quantify the ``goodness-of-fit'' for the data using the correlation coefficient ($R^2$).
 

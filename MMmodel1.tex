@@ -22,10 +22,10 @@ So, even though models are wrong (they are always simplified approximations), th
 \end{itemize}
 
 \section{First-Order Model}
-Our \gls{first-order model}, a first-order, linear, ordinary differential equation, is 
+Our \gls{first-order model}---a first-order, linear, ordinary differential equation---is 
 \begin{equation}
 \label{e:first}
-\frac{dy(t)}{dt} + \frac{1}{\tau}y(t) = f(t).
+\frac{dy(t)}{dt} + \frac{1}{\tau}y(t) = f(t),
 \end{equation}
 where $f(t)$ is the input (forcing function), $y(t)$ is the output (response function) and $\tau$ is the time constant.  That's it; there is really nothing more to say.  
 
@@ -43,12 +43,12 @@ One example of a physical system that can be approximated by our first-order mod
 \caption{Sketch of a simplified automobile model.  The point mass ($m$) moves to the right at a velocity ($v(t)$.  The input is a force ($f(t)$).  There is a drag force that resists the motion. }
 \label{f:massd}
 \end{figure}
-Based on this sketch we can do things like draw a free-body-diagram and apply Newtonian principles to arrive at an equation of motion.  We might also make an ambitious simplifying assumption that the drag force that resists the motion of the mass is linearly related to the velocity, i.e., $f_{\mathrm{drag}}=b(v(t))$.  We could come up with an equation of motion, our mathematical model,
+Based on this sketch we can do things like draw a free-body-diagram and apply Newtonian principles to arrive at an equation of motion.  We might also make an ambitious simplifying assumption that the drag force that resists the motion of the mass is linearly related to the velocity, i.e., $f_{\mathrm{drag}}=b(v(t))$.  Then we could come up with an equation of motion
 \begin{equation}
 \label{e:car}
 m\left(\dot{v}(t)\right) + b(v(t)) = f(t)
 \end{equation}
-where $m$ is the mass of the car, $v(t)$ is the speed, $\dot{v}(t)$ is the acceleration, $b$ is the coefficient of linear drag and $f(t)$ is the input force.
+where $m$ is the mass of the car, $v(t)$ is the speed, $\dot{v}(t)$ is the acceleration, $b$ is the coefficient of linear drag and $f(t)$ is the input force.  This equation of motion is our mathematical model
 This equation has the same form (a first-order, linear, ordinary differential equation) as our first-order model~(\ref{e:first}).
 
 This is meant to be an example of a model that is obviously wrong.  A physical automobile is a complex system with many, many degrees of freedom.  Our simplified model~(\ref{e:car}) is meant to do just one thing, allow us to predict how, in general, the speed of a car responds to changes in the throttle input.
@@ -94,7 +94,7 @@ label={l:firstresp}]
 
 This solution is graphed in Figure~\ref{f:firststep} using the MATLAB script in Listing~\ref{l:firstresp}. This time response to a step input (or step response for short) has a characteristic shape as it rises and approaches the \gls{steady-state response} exponentially.  One important aspect of the response is that it approaches a new constant value, the steady-state response.  A simple way to find the steady state value is to set $\dot{y}(t)=0$ in (\ref{e:first}).  Since we are looking for the ``steady-state'' value we can anticipate that all rates of change (derivatives) will be zero.  Now the steady-state value ($y_{\mathrm{ss}}$) is 
 \begin{equation}\label{e:ss}
-y_{\mathrm{ss}} = \tau A
+y_{\mathrm{ss}} = \tau A.
 \end{equation}
 
 Another important characteristic of this model is that the response ($y(t)$) moves exponentially from the initial value to the steady state value.  This response is characterized by the the \gls{time constant} ($\tau$).  If we evaluate time response (\ref{e:stepresp}) at $t=\tau$ we find that
@@ -104,9 +104,9 @@ y(t=\tau) = A \tau (0.632) = 0.632 (y_{\mathrm{ss}})
 which means that after one time constant has passed the response is 63.2\% of the way from the initial value to the steady state value.  Take a look at Figure~\ref{f:firststep} to make sure that we did the math correctly!
 
 \subsection{An Example}
-Now that we've discussed the time response of our first-order model let's see how this applies to our automobile model.  We can rearrange the mathematical model (\ref{e:car}) so that it looks more like our generic model (\ref{e:first})
+Now that we've discussed the time response of our first-order model let's see how this applies to our automobile model.  We can rearrange the mathematical model (\ref{e:car}) so that it looks more like our generic model (\ref{e:first}) which results in the expression
 \begin{equation}\label{e:car2}
-\dot{v}(t) + \frac{1}{m/b}(v(t)) = \frac{F}{m}\mu(t))
+\dot{v}(t) + \frac{1}{m/b}(v(t)) = \frac{F}{m}\mu(t)
 \end{equation}
 which highlights that the time constant is $\tau=m/b$ and that the steady state speed is $v_{\mathrm{ss}}=F/b$.  Take a moment to think about this.  It means that the larger the mass of our car, the slower the acceleration (because the time constant is larger).  You might also notice that the mass has no effect on the steady state speed; our model says that a heavy ``car'' will reach the same final speed as a light car, it will just get there slower.  Finally we might notice that the more drag in our model, the slower our ``car'' will go for the same input.   
 
@@ -176,9 +176,9 @@ Using our automobile model (\ref{e:car}), write an expression for the free respo
 \section{Superposition}
 One the characteristics that make linear system such as our first-order model useful is the principle of \gls{superposition} which allows determine the solution to a linear model by adding together multiple solutions.  As an example, suppose there are two input functions, $f_1(t)$ and $f_2(t)$, and that the corresponding solutions are $y_1(t)$ and $y_2(t)$.  If we want to know the response of the system to both inputs, $f(t)=f_1(t)+f_2(t)$, we can simply add the two solutions, $y(t)=y_1(t)+y_2(t)$. 
 
-This principle simplifies the task of finding the response to our first-order model when there are both initial conditions and a forcing function.  Armed with this we can determine the step response of our first-order model when there is a non-zero initial condition
+This principle simplifies the task of finding the response to our first-order model when there are both initial conditions and a forcing function.  Armed with this we can determine the step response of our first-order model when there is a non-zero initial condition which results in the expression
 \begin{equation}
-y(t) = y_o \, e^{-t/\tau} + A\tau\left(1-e^{-t/\tau}\right)
+y(t) = y_o \, e^{-t/\tau} + A\tau\left(1-e^{-t/\tau}\right).
 \end{equation}
 
 Another handy aspect of superposition is the scaling property.  This means that if we scale (multiply) the input by a factor ($a$) then the output is simply the response to the original input scaled (multiplied) by the same factor.  As an example, consider our first-order car model (\ref{e:car}) where the input is a force ($f(t)$).  If we know that a force of \unit[1,000]{N} results in a steady state speed of \unit[25]{mph} then superposition tells us that a force of \unit[2,000]{N} will result in a final speed of \unit[50]{mph}.
@@ -193,7 +193,7 @@ Our first-order model can be used to describe the response of a temperature sens
 \subsection{Mathematical Model}
 Suppose we have a bulb thermometer that is at equilibrium the instant before it is plunged into boiling water.  The measured temperature will not instantly move to \unit[100]{$^{\circ}$C}, but instead the temperature of the device ($T(t)$) will move toward the new equilibrium over time.  The speed of that response is determined by the inertia and resistance of the system.
 
-Figure~\ref{f:therm} illustrates how we might analyze this system.  Newton's law of cooling says that ``the rate of heat loss of a body is proportional to the difference in temperatures between the body and the surroundings'', or, stated mathematically 
+Figure~\ref{f:therm} illustrates how we might analyze this system.  Newton's law of cooling says that ``the rate of heat loss of a body is proportional to the difference in temperatures between the body and the surroundings'', or, stated mathematically,
 \begin{equation}
 \dot{Q}=hA (T_f(t)-T(t))
 \end{equation}

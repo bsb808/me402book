@@ -17,16 +17,17 @@ Figure~\ref{f:cant} shows the solution to the classical beam equation for a cant
 \subsection{Determining Strain and Displacement}
 Two quantities of the response of the beam that we'd like to be able to predict is the strain ($\epsilon$), due to bending, at a particular location along the length ($x$) as a function of the applied load ($F$) and the displacement at the free end of the beam ($y_{max}$) as a function of the applied load.  We can start with the (hopefully) familiar expression for bending stress in a beam due to an applied moment,
 \[
-\sigma_x=\frac{M(h/2)}{I}
+\sigma_x=\frac{M(h/2)}{I},
 \]
-where $h$ is the height of the beam cross-section and $I$ is the second moment of area of the beam cross-section.  We can use the linear relationship for elastic stress and strain ($\sigma_x = E \epsilon$) to find an expression for the strain at any location $x$ along the beam.
+where $h$ is the height of the beam cross-section and $I$ is the second moment of area of the beam cross-section.  We can use the linear relationship for elastic stress and strain ($\sigma_x = E \epsilon$) to find an expression for the strain at any location $x$ along the beam:
 \begin{equation}\label{e:eps}
-\epsilon = \frac{F(x-l)(h/2)}{EI}
+\epsilon = \frac{F(x-l)(h/2)}{EI}.
 \end{equation}
 We can then solve for the tip force and the tip displacement as a function of the measured strain:
 \begin{equation}\label{e:strainf}
 F = \left( \frac{EI}{(x-l)(h/2)} \right) \epsilon 
 \end{equation}
+and
 \begin{equation}\label{e:straine}
 y_{max}=\left( \frac{l^3}{3(x-l)(h/2)} \right) \epsilon.
 \end{equation}
