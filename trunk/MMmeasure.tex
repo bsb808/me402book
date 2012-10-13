@@ -125,7 +125,7 @@ The job of the ADC is to convert the incoming voltage and convert the value to a
 \end{figure}
 An important consideration of this ADC example is the resolution of the measurement, also known as the quantization error, which can be calculated using the same expression as before:
 \begin{equation}
-Q = \frac{FSR}{2^M} = \frac{\unit[10.0]{V}}{2^8} = \unit[39.1]{mV}
+Q = \frac{FSR}{2^M} = \frac{\unit[10.0]{V}}{2^8} = \unit[39.1]{mV}.
 \end{equation}
 Because the ADC has 8-bits of resolution, it will report a binary number that is one of 256 possible levels.  Each level is separated by \unit[39.1]{mV} so that the total range is \unit[10.0]{V}.  If the actual input voltage is \unit[3.14159]{V} the ADC will report the closes binary level that correspond to this measurement which is $01010000$ (80 in decimal form).  So the ADC output, converted back to voltage, would be \unit[3.125]{V} $\pm$ \unit[0.0196]{V}, where \unit[0.0196]{V} is $Q/2$.  
 

@@ -57,13 +57,13 @@ Run & $L_i$ [m] \\ \hline \hline
 \end{table}
 Remember, we are trying to compare our model ($\hat{L}$) with our data ($L_i$).  What could we say qualitatively?  We might say that is ``looks pretty good'', but that is very subjective.  One of our measurements is almost 50\% higher than our model prediction.  Is that ``pretty good'', ``fair'', ``poor'' or ``terrible''?
 
-Luckily, we don't really have to make that decision.  Instead we can quantify the comparison.  One easy statistical quantity we can use is the \gls{sample mean}
+Luckily, we don't really have to make that decision.  Instead we can quantify the comparison.  One easy statistical quantity we can use is the \gls{sample mean} ($\bar{L}$) which can be expressed as
 \begin{equation}\label{e:mean}
 \bar{L} = \frac{1}{N}\sum_{i=1}^{N} L_i
 \end{equation}
-where $N$ is the number of samples (5) and $\bar{L}$ is the sample mean.  We might use the MATLAB \texttt{mean()} command to calculate $\bar{L}=\unit[1.11]{m}$.  Now we have a simple quantitative comparison, and we can say something like, ``The predicted value of $L$ was \unit[1.0]{m} and the sample mean of the measured length was \unit[1.11]{m} based on 5 samples, indicating an 11\% difference between the model and the experiment.''  As an engineer, this is a much more satisfying result that the comment that the ``data looks pretty close''---true?
+where $N$ is the number of samples (5 in this case) and $L_i$ is each of the $N$ samples (the data).  We might use the MATLAB \texttt{mean()} command to calculate $\bar{L}=\unit[1.11]{m}$.  Now we have a simple quantitative comparison, and we can say something like, ``The predicted value of $L$ was \unit[1.0]{m} and the sample mean of the measured length was \unit[1.11]{m} based on 5 samples, indicating an 11\% difference between the model and the experiment.''  As an engineer, this is a much more satisfying result that the comment that the ``data looks pretty close''---true?
 
-Another simple statistic we can use to quantify our results is the \gls{sample standard deviation},
+Another simple statistic we can use to quantify our results is the \gls{sample standard deviation} of $L$ ($\sigma_L$) which can be expressed as
 \begin{equation}\label{e:std}
 \sigma_{L}=\sqrt{\frac{1}{N-1}\sum_{i=1}^{N}\left(L_i-\bar{L}\right)^2}.
 \end{equation}
