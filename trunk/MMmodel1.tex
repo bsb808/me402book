@@ -7,7 +7,7 @@
 \end{epigraphs}
 
 \section{All Models Are Wrong!}
-For our purposes a \emph{model} is equivalent to a \gls{mathematical model}, an equation.  We can use to understand and design a \emph{system}, a physical system which we wish to analyze.  Over the last few hundred years people with last names like Newton, Maxwell, Euler, Lagrange  and Bernoulli have come with with a variety of simple equations that describe physical processes.  The key point, that is often overlooked, is that this description is only approximate; the mathematical model and the physical system never share the same behavior.
+For our purposes a \emph{model} is equivalent to a \gls{mathematical model}, an equation.  We can use to understand and design a \emph{system}, a physical system which we wish to analyze.  Over the last few hundred years people with last names like Newton, Maxwell, Euler, Lagrange  and Bernoulli have come with a variety of simple equations that describe physical processes.  The key point, that is often overlooked, is that this description is only approximate; the mathematical model and the physical system never share the same behavior.
 
 So why do engineers spend so much time and energy learning mathematical equations and how to solve them if these models never completely capture the behavior of a physical system?  It turns out that under specific conditions, these models allow us to \emph{predict} the behavior of systems that we might want to build.  
 
@@ -64,6 +64,7 @@ One useful aspect of our first-order model~(\ref{e:first}) is that the solution 
 \end{array} \right.
 .
 \end{equation}
+This function ($\mu(t)$) is also known as the \emph{unit} step function because the amplitude of the step is 1.0.
 Figure~\ref{f:step} illustrates how the value of $\mu(t)$ is zero before $t=0$ and then instantaneously changes to unity.
 \begin{figure}[hbt!]
 \centering
@@ -72,11 +73,17 @@ Figure~\ref{f:step} illustrates how the value of $\mu(t)$ is zero before $t=0$ a
 \label{f:step}
 \end{figure}
 
-The \gls{step response} of our first-order model is the solution to (\ref{e:first}) with step function as the input ($f(t)=A\mu(t)$) and an initial condition of zero ($y(0)=0$).  (You should notice that the step function here has an amplitude of $A$ rather than an amplitude of 1 as indicated in (\ref{e:step}).)  The step response is the well known solution
+Now consider our generic first-order model (\ref{e:first}) with a step input ($f(t)=A\mu(t)$) and an initial condition of zero ($y(0)=0$),
+\begin{equation}
+\label{e:firststepinput}
+\frac{dy(t)}{dt} + \frac{1}{\tau}y(t) = A\mu(t).
+\end{equation}
+(You should notice that the input function ($f(t)$) is a step input with an amplitude of $A$.)
+The \gls{step response} is the solution to this ordinary differential equation which is
 \begin{equation}\label{e:stepresp}
 y(t) = A\tau\left(1-e^{-t/\tau}\right)
 \end{equation}
-for $t>0$.
+for $t>0$.  Notice that there are two key parameters of our model step response: the time constant ($\tau$) and the amplitude of the step input ($A$).
 
 \begin{figure}[hbt]
 \centering
@@ -87,12 +94,12 @@ for $t>0$.
 
 
 \lstinputlisting[style=myMatStyle,
-caption={code},
+caption={Script for first-order response: first\_order\_response.m},
 label={l:firstresp}]
 {./code/first_order_response.m}
 
 
-This solution is graphed in Figure~\ref{f:firststep} using the MATLAB script in Listing~\ref{l:firstresp}. This time response to a step input (or step response for short) has a characteristic shape as it rises and approaches the \gls{steady-state response} exponentially.  One important aspect of the response is that it approaches a new constant value, the steady-state response.  A simple way to find the steady state value is to set $\dot{y}(t)=0$ in (\ref{e:first}).  Since we are looking for the ``steady-state'' value we can anticipate that all rates of change (derivatives) will be zero.  Now the steady-state value ($y_{\mathrm{ss}}$) is 
+This solution (\ref{e:stepresp} is graphed in Figure~\ref{f:firststep} using the MATLAB script in Listing~\ref{l:firstresp}. This time response to a step input (or step response for short) has a characteristic shape as it rises and approaches the \gls{steady-state response} exponentially.  One important aspect of the response is that it approaches a new constant value, the steady-state response.  A simple way to find the steady state value is to set $\dot{y}(t)=0$ in (\ref{e:first}).  Since we are looking for the ``steady-state'' value we can anticipate that all rates of change (derivatives) will be zero.  Now the steady-state value ($y_{\mathrm{ss}}$) is 
 \begin{equation}\label{e:ss}
 y_{\mathrm{ss}} = \tau A.
 \end{equation}
@@ -130,7 +137,7 @@ Consider the step response to our car model (\ref{e:car2}) with the following pa
 Consider the step response to our car model (\ref{e:car2}) with the following parameters: mass = \unit[750]{kg}, drag coefficient = \unitfrac[150]{Ns}{m}.
 \begin{itemize}
 \item What is the minimum step input amplitude ($F_{\mathrm{min}}$ that would cause our ``car'' to go from \unit[0--60]{mph}?
-\item Based on this minimum step input amplitude, how long does it take for the ``car'' to go from \unit[0--60]{mph}?
+\item Based on this minimum step input amplitude, how long does it take for the ``car'' to go from \unit[0--60]{mph}? (Hint: the answer to this question can be a number or a sentence!)
 \item If we double ($F_{\mathrm{min}}$
  \begin{itemize}
  \item How long does it take for the ``car'' to go from \unit[0--60]{mph}?
@@ -173,10 +180,10 @@ for $t>0$. Figure~\ref{f:firstfree} illustrates this free response.  Just as bef
 Using our automobile model (\ref{e:car}), write an expression for the free response of this model with appropriate physical parameters.  Create a graph of the free response with the initial condition $v(0)=\unit[60]{mph}$. For the x-axis of the graph use the units mph and for the y-axis of the graph use the units seconds.
 \end{ex}
 
-\section{Superposition}
+\section{Superposition---Step Response with Non-Zero Initial Condition}
 One the characteristics that make linear system such as our first-order model useful is the principle of \gls{superposition} which allows determine the solution to a linear model by adding together multiple solutions.  As an example, suppose there are two input functions, $f_1(t)$ and $f_2(t)$, and that the corresponding solutions are $y_1(t)$ and $y_2(t)$.  If we want to know the response of the system to both inputs, $f(t)=f_1(t)+f_2(t)$, we can simply add the two solutions, $y(t)=y_1(t)+y_2(t)$. 
 
-This principle simplifies the task of finding the response to our first-order model when there are both initial conditions and a forcing function.  Armed with this we can determine the step response of our first-order model when there is a non-zero initial condition which results in the expression
+This principle simplifies the task of finding the response to our first-order model when there are both initial conditions and a forcing function.  Armed with superposition principle we can determine the step response (the solution to (\ref{e:first}) with the input $f(t)=A\mu(t)$) of our first-order model when there is a non-zero initial condition ($y(0)=y_o$) by simply adding our two previous solutions, the step response with zero initial condition and the free response with no forcing function:
 \begin{equation}
 y(t) = y_o \, e^{-t/\tau} + A\tau\left(1-e^{-t/\tau}\right).
 \end{equation}
