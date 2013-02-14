@@ -54,7 +54,7 @@ The strain gage is one of many sensors where the transduction is a conversion to
 \begin{figure}[hbt!]
 \centerline{
 {\includegraphics[width=0.5\textwidth]{Wheatstonebridge2.png}}}
-\caption{  (This image an adaptation of the image by ``Zedh'', is licensed under the CC BY-SA license and is available from \url{http://en.wikipedia.org/wiki/File:Wheatstonebridge.svg}) }
+\caption{ Wheatstone bridge circuit.  Excitation voltage is $V_s$, the strain gage (variable resistance) is $R_x$ and the output voltage is $V_o$. (This image an adaptation of the image by ``Zedh'', is licensed under the CC BY-SA license and is available from \url{http://en.wikipedia.org/wiki/File:Wheatstonebridge.svg}) }
 \label{f:bridge}
 \end{figure}
 
@@ -64,7 +64,7 @@ When the value of one leg of the bridge changes, say when a strain induces a cha
 \begin{equation}\label{e:bridge}
 V_o = V_s \left( \frac{\delta R_x/R_x}{4+2(\delta R_x/R_x)} \right) \approx \frac{\delta R_x/R_x}{4}.
 \end{equation}
-This expression quantifies how a change in resistance of one leg of a quarter-bridge circuit is converted into a corresponding output voltage.  One thing to not is that the sensitivity of the bridge circuit is a function of of the excitation voltage ($V_s$).  So, the larger the excitation the larger the output voltage, for an equivalent change in resistance.  (Of course the larger the supply voltage the larger the current flowing through the bridge which results in unnecessary heating which then causes other problems.)
+This expression quantifies how a change in resistance of one leg of a quarter-bridge circuit is converted into a corresponding output voltage.  Notice the sensitivity of the bridge circuit is a function of of the excitation voltage ($V_s$).  So, the larger the excitation the larger the output voltage, for an equivalent change in resistance.  (Of course the larger the supply voltage the larger the current flowing through the bridge which results in unnecessary heating which then causes other problems.)
 
 There are other implementations of the Wheatstone bridge such as half-bridge and full-bridge configurations; we'll stick with the quarter-bridge for now.
 

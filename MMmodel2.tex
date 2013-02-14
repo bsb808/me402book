@@ -1,4 +1,12 @@
 \chapter{Dynamic Models: Part 2}\label{c:model2}
+So far we have examined two mathematical models to predict and quantify the response of mechanical systems: a static (zero-order) model and a first-order dynamic model.  It may not be terribly surprising that our next topic is a second-order model.  A second-order model is a generic mathematical description of a system that is capable of oscillations. (You might recall that neither a static response nor a first-order response oscillates.)   This simple model can be used to help understand the behavior of a variety of engineering systems such as
+\begin{itemize}
+\item pendulums, where the position oscillates
+\item passive circuits, where the voltage/current oscillates 
+\item acoustic systems, where the sound pressure level (volume) oscillates.
+\end{itemize}
+
+The key elements of a second-order model are \emph{inertia}, \emph{stiffness} and \emph{damping} where the interpretation of these elements depends on the domain (mechanical, electrical, acoustic, etc.) under examination.  We will focus on mechanical systems where the inertia is in the form of mass, the stiffness is a restoring force (such as a spring or gravity) and damping is losses due to frictional forces.
 
 \section{Second-Order Model}
 We will use \gls{second-order model} as shorthand for a linear, ordinary, time-invariant second-order differential equation of the form
@@ -39,13 +47,13 @@ where $m$ is the mass, $b$ is the linear damping coefficient, $k$ is the linear 
 Using (\ref{e:second}) and (\ref{e:msd}), derive expressions for the system parameters ($\omega_n$ and $\zeta$) in terms of the physical parameters ($m$, $b$, and $k$).  (Hint: Use physical units to check your answers.)
 \end{ex}
 
-%\ifsolutions
+\ifsolutions
 \begin{soln}
 You should verify that the following expressions are correct:
 \[ \omega_n = \sqrt{k/m} \; \; \; \unitfrac[]{rad}{s}\]
 \[ \zeta = \frac{b}{2 \sqrt{mk}} \; \; \; \unitfrac[]{n}{a} \]
 \end{soln}
-%\fi
+\fi
 
 
 \section{Free Response}\label{s:secondfree}
@@ -88,7 +96,7 @@ Another way to ``see'' this solution is to graph the time response.  The short M
 %{./code/second_order_free.m}
 
 \lstinputlisting[style=myMatStyle,
-caption={Script for plotting the free response of a second-order model.},
+caption={Script for plotting the free response of a second-order model. (Filename=second\_order\_free.m, \url{http://web.eng.hawaii.edu/~bsb/me402/book/code/second_order_free.m})},
 label={l:secondfree}]
 {./code/second_order_free.m}
 

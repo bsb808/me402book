@@ -110,12 +110,17 @@ y(t=\tau) = A \tau (0.632) = 0.632 (y_{\mathrm{ss}})
 \]
 which means that after one time constant has passed the response is 63.2\% of the way from the initial value to the steady state value.  Take a look at Figure~\ref{f:firststep} to make sure that we did the math correctly!
 
-\subsection{An Example}
+\subsection{Car Example---Step Response}
 Now that we've discussed the time response of our first-order model let's see how this applies to our automobile model.  We can rearrange the mathematical model (\ref{e:car}) so that it looks more like our generic model (\ref{e:first}) which results in the expression
 \begin{equation}\label{e:car2}
 \dot{v}(t) + \frac{1}{m/b}(v(t)) = \frac{F}{m}\mu(t)
 \end{equation}
-which highlights that the time constant is $\tau=m/b$ and that the steady state speed is $v_{\mathrm{ss}}=F/b$.  Take a moment to think about this.  It means that the larger the mass of our car, the slower the acceleration (because the time constant is larger).  You might also notice that the mass has no effect on the steady state speed; our model says that a heavy ``car'' will reach the same final speed as a light car, it will just get there slower.  Finally we might notice that the more drag in our model, the slower our ``car'' will go for the same input.   
+which highlights that the time constant is $\tau=m/b$ and that the steady state speed is $v_{\mathrm{ss}}=F/b$.  Take a moment to think about this.  It means that the larger the mass of our car, the slower the acceleration (because the time constant is larger).  You might also notice that the mass has no effect on the steady state speed; our model says that a heavy ``car'' will reach the same final speed as a light car, it will just get there slower.  Finally we might notice that the more drag in our model, the slower our ``car'' will go for the same input. Listing~\ref{l:carresp} illustrates how we might use MATLAB to graph the solution for specific numerical values.
+
+\lstinputlisting[style=myMatStyle,
+caption={Script for first-order response of our car example: firstorder\_car\_ex.m},
+label={l:carresp}]
+{./code/firstorder_car_ex.m}
 
 \begin{ex}
 The step function in (\ref{e:step}) could be more precisely called the ``unit step function'' because it has an amplitude of 1.  Write an equation (similar to (\ref{e:step})) and sketch a graph (similar to Figure~\ref{f:step}) for the more general step function input $f(t) = A(\mu(t-t_o))$.
