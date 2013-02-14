@@ -79,9 +79,9 @@
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Uncomment the second line for solutions!
+% Uncomment the second line to include solutions!
 \newif\ifsolutions
-\solutionstrue
+%\solutionstrue  % if uncommented, will include solutions
 
 \graphicspath{{./}{./figs/}}
 
@@ -146,7 +146,7 @@
 \fi
 \title{\thetitle}
 \author{Brian Bingham}
-\date{Revision 28\\15 January 2013}
+\date{Revision 29\\14 February 2013}
 
 % Title Page
 \maketitle
@@ -169,13 +169,14 @@ of a textbook, which can be converted to other formats and printed.
 
 % PREFACE AND CHAPTERS
 \include{MMpreface}
+% Contributors List
+\input{MMcontributors}
+
 % TOC
 \setcounter{tocdepth}{1}
 \tableofcontents
 
 \mainmatter
-% Contributors List
-\input{MMcontributors}
 
 % These are the chapters, prepended with the _gls (glossary) files
 \renewcommand{\thisgls}{dataacq}
