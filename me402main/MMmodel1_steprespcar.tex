@@ -1,0 +1,56 @@
+Now that we've discussed the time response of our first-order model let's see how this applies to our automobile model.  We can rearrange the mathematical model (\ref{e:car}) so that it looks more like our generic model (\ref{e:first}) which results in the expression
+\begin{equation}\label{e:car2}
+\dot{v}(t) + \frac{1}{m/b}(v(t)) = \frac{F}{m}\mu(t)
+\end{equation}
+which highlights that the time constant is $\tau=m/b$ and that the steady state speed is $v_{\mathrm{ss}}=F/b$.  Take a moment to think about this.  It means that the larger the mass of our car, the slower the acceleration (because the time constant is larger).  You might also notice that the mass has no effect on the steady state speed; our model says that a heavy ``car'' will reach the same final speed as a light car, it will just get there slower.  Finally we might notice that the more drag in our model, the slower our ``car'' will go for the same input. Listing~\ref{l:carresp} illustrates how we might use MATLAB to graph the solution for specific numerical values.
+
+\lstinputlisting[style=myMatStyle,
+caption={Script for first-order response of our car example: firstorder\_car\_ex.m},
+label={l:carresp}]
+{../code/firstorder_car_ex.m}
+
+\begin{ex}
+The step function in (\ref{e:step}) could be more precisely called the ``unit step function'' because it has an amplitude of 1.  Write an equation (similar to (\ref{e:step})) and sketch a graph (similar to Figure~\ref{f:step}) for the more general step function input $f(t) = A(\mu(t-t_o))$.
+\end{ex}
+
+\begin{ex}
+We justified (\ref{e:ss}) by starting with the model (\ref{e:first}).  Another way to calculate the steady state response is to evaluate the solution (\ref{e:stepresp}) as $t \to \infty$.  Show that using this method yields the same result.
+\end{ex}
+
+\begin{ex}
+We showed that the response of a first-order model to a step function input has an exponential increase characterized by the time constant.  Furthermore we showed that after a duration of one time constant beyond the rise in the step input the output will be 63.2\% of the way to its steady state value.  Figure~\ref{f:firststep} illustrates the value of the response at  $t=[\tau,2\tau,3\tau,4\tau,5\tau]$.  Evaluate \ref{e:stepresp} for these values of time and report the results in a two column table where the first column is the ratio $t/\tau$ and the second column is the ratio $y(t)/y_{\mathrm{ss}}$.
+\end{ex}
+
+\begin{ex}
+Consider the step response to our car model (\ref{e:car2}) with the following parameters: mass = \unit[750]{kg}, drag coefficient = \unitfrac[150]{Ns}{m}, step input amplitude = \unit[10,000]{N}.  Create a graph similar to Figure~\ref{f:firststep} to illustrate the step response of our ``car''.  Annotate the graph to show the time constant and the steady state speed.  Also, make sure to use appropriate units for each axis.
+\end{ex}
+
+\begin{ex}
+Consider the step response to our car model (\ref{e:car2}) with the following parameters: mass = \unit[750]{kg}, drag coefficient = \unitfrac[150]{Ns}{m}.
+\begin{itemize}
+\item What is the minimum step input amplitude ($F_{\mathrm{min}}$ that would cause our ``car'' to go from \unit[0--60]{mph}?
+\item Based on this minimum step input amplitude, how long does it take for the ``car'' to go from \unit[0--60]{mph}? (Hint: the answer to this question can be a number or a sentence!)
+\item If we double ($F_{\mathrm{min}}$
+ \begin{itemize}
+ \item How long does it take for the ``car'' to go from \unit[0--60]{mph}?
+ \item What is the new top speed (in mph)?
+ \item How long does it take for the ``car'' to achieve this new top speed?
+ \end{itemize}
+\end{itemize}
+\end{ex}
+
+\ifsolutions
+\begin{soln}
+Here is a solution.
+\begin{itemize}
+\item The steady-state value is $V_{ss}=F/b$ and \unit[60]{mph} is approximately \unitfrac[27]{m}{s}.  Since $b=\unitfrac[150]{Ns}{m}$, $F_{min}=\unit[4050]{N}$.
+\item Interestingly the car never truly gets all the way to the final steady-state value!  After five time constants ($t=5\tau$=\unit[25]{s}) the car is 99\% of the way to \unit[60]{mph}
+\item If we double this input force...
+\begin{itemize}
+\item The car takes about \unit[4]{s} to get to \unit{60}{mph} (\unitfrac[27]{m}{s}).
+\item The new top speed is double of the original top speed---\unit[120]{m/s}.  This is because the system is linear!
+\item Again, it never really gets there.  It gets 99\% of the way there after five time constants (\unit[25]{s}).
+\end{itemize}
+\end{itemize}
+\end{soln}
+\fi

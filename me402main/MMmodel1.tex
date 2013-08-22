@@ -1,0 +1,41 @@
+\chapter{Dynamic Models: Part 1}\label{c:model1}
+\renewcommand{\epigraphsize}{\small\itshape}
+\renewcommand{\epigraphwidth}{4.25in}
+\renewcommand{\epigraphrule}{0pt}
+\begin{epigraphs}
+\qitem{The best material model of a cat is another, or preferably the same cat.}{--- \textup{Arturo Rosenblueth and Norbert Wiener}, \\The Role of Models in Science, 1945.}
+\end{epigraphs}
+
+\section{All Models Are Wrong!}
+For our purposes a \emph{model} is equivalent to a \gls{mathematical model}, an equation.  We can use to understand and design a \emph{system}, a physical system which we wish to analyze.  Over the last few hundred years people with last names like Newton, Maxwell, Euler, Lagrange  and Bernoulli have come with a variety of simple equations that describe physical processes.  The key point, that is often overlooked, is that this description is only approximate; the mathematical model and the physical system never share the same behavior.
+
+So why do engineers spend so much time and energy learning mathematical equations and how to solve them if these models never completely capture the behavior of a physical system?  It turns out that under specific conditions, these models allow us to \emph{predict} the behavior of systems that we might want to build.  
+
+As an example, consider the Hoover Dam, a \unit[726]{ft} tall structure constructed with over 3 million cubic yards of cement.  In designing this structure we would hope that engineers spent a large amount of time on structural models to attempt to predict if their designs would last through floods, earthquakes and any situation that might arrive.  Without any models they would be have to fall back on the build-and-test process of engineering, building a prototype dam and sitting back to see if it worked; obviously not a very safe or cost effect way to build a dam.  On the other hand, we have to imagine that the engineers included some conservative factors of safety to build the structure somewhat larger and stronger than their models predicted.  They did this because they understood that the model was only an approximation of the dam; the model was wrong, but still useful.  
+
+So, even though models are wrong (they are always simplified approximations), they are useful for the following reasons:
+\begin{itemize}
+\item under certain specific conditions mathematical models can predict (approximately) the behavior of physical systems
+\item analysis of the model behavior can be an efficient way to test the behavior of system designs before we go to the trouble (cost and time) to build the physical system
+\item we can analyze the behavior of models in situations that would be hard or impossible to create in the physical system
+\item the model analysis enables us to understand the system and build intuition about how a system behaves 
+\end{itemize}
+
+\section{First-Order Model}
+\input{MMmodel1_firstorder.tex}
+\subsection{An Example}
+\input{MMmodel1_carexample.tex}
+
+\section{Step Response}\label{s:firststep}
+\input{MMmodel1_stepresp.tex}
+\subsection{Car Example---Step Response}
+\input{MMmodel1_steprespcar.tex}
+
+\section{Free Response}
+\input{MMmodel1_free.tex}
+
+\section{Superposition---Step Response with Non-Zero Initial Condition}
+\input{MMmodel1_super.tex}
+
+\section{Thermometer Example}
+\input{MMmodel1_thermometer.tex}

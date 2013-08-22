@@ -1,0 +1,12 @@
+One the characteristics that make linear system such as our first-order model useful is the principle of \gls{superposition} which allows determine the solution to a linear model by adding together multiple solutions.  As an example, suppose there are two input functions, $f_1(t)$ and $f_2(t)$, and that the corresponding solutions are $y_1(t)$ and $y_2(t)$.  If we want to know the response of the system to both inputs, $f(t)=f_1(t)+f_2(t)$, we can simply add the two solutions, $y(t)=y_1(t)+y_2(t)$. 
+
+This principle simplifies the task of finding the response to our first-order model when there are both initial conditions and a forcing function.  Armed with superposition principle we can determine the step response (the solution to (\ref{e:first}) with the input $f(t)=A\mu(t)$) of our first-order model when there is a non-zero initial condition ($y(0)=y_o$) by simply adding our two previous solutions, the step response with zero initial condition and the free response with no forcing function:
+\begin{equation}
+y(t) = y_o \, e^{-t/\tau} + A\tau\left(1-e^{-t/\tau}\right).
+\end{equation}
+
+Another handy aspect of superposition is the scaling property.  This means that if we scale (multiply) the input by a factor ($a$) then the output is simply the response to the original input scaled (multiplied) by the same factor.  As an example, consider our first-order car model (\ref{e:car}) where the input is a force ($f(t)$).  If we know that a force of \unit[1,000]{N} results in a steady state speed of \unit[25]{mph} then superposition tells us that a force of \unit[2,000]{N} will result in a final speed of \unit[50]{mph}.
+
+\begin{ex}
+Consider our first-order car model discussed above where a \unit[1,000]{N} input yields a steady state speed of \unit[25]{mph}.  Furthermore, we know that the time constant of this system is \unit[2]{s}.  Again we double the input to \unit[2,000]{N}. What is the time constant with the doubled input?
+\end{ex}

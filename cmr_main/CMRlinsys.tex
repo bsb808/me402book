@@ -1,0 +1,50 @@
+\chapter{Linear Systems}\label{c:linsys}
+\section{Introduction: Dynamic Models}
+Our goal is to develop the ability to control dynamic systems, in particular robot systems.  To develop these skills we need to be able to predict how a particular control approach (an algorithm) will perform: Will the control be stable?  Will it move the robot fast enough to the right place?  Mathematical models provide this predictive capability.  
+
+The models that we are concerned with developing are ones that behave similarly to the actual physical systems we wish to control.  A good place to start is with models that are linear because they are (relatively) easy to understand and provide a general set of abstractions that can be applied to a wide variety of physical implementations.
+
+In this chapter we will explore some basic matematical models and how they can be used to predict the behavior of physical systems.  We won't be modeling any mobile robots just yet, but this is the foundation on which we'll build our robot models.
+
+One cautionary note before we get started---all models are wrong.  By this we mean that mathematical models are abstract approximations of physical systems.  The model never predicts exactly how the actual system will behave under all circumstances.  Nevertheless simple models can provide a tremendous amount of insight into how a controller will function and allow us to prototype our ideas using analytical and numerical solutions before we go to the time and trouble of actually implementing a control solution.  Just as computer-aided design (CAD) tools allow us to conceive of and refine physical artifacts before we start fabridation, these models allow us to design and test our control solutions before releasing them into the wild.
+
+\section{First-Order Model}
+The mathematical models often used for understanding and developing controllers are differential equations.  To get started we will consider models that are linear (as opposed to non-linear), ordinary (as opposed to partial) differential equations.  
+
+\input{../me402main/MMmodel1_firstorder.tex}
+\subsection{An Example}
+\input{../me402main/MMmodel1_carexample.tex}
+
+\section{Step Response}\label{s:firststep}
+\input{../me402main/MMmodel1_stepresp.tex}
+\subsection{Car Example---Step Response}
+\input{../me402main/MMmodel1_steprespcar.tex}
+
+\section{Free Response}
+\input{../me402main/MMmodel1_free.tex}
+
+\section{Superposition---Step Response with Non-Zero Initial Condition}
+\input{../me402main/MMmodel1_super.tex}
+
+
+%\section{Second-Order Model}
+\input{../me402main/MMmodel2_secondorder.tex}
+
+%\section{Example: Cantilevered Beam}
+\input{../me402main/MMmodel2_exbeam.tex}
+
+%\section{The Laplace Transform}
+
+%\section{The Transfer Function}
+
+\section{Numerical Solutions}
+One reason that the first and second order models are a good place to start our discussion is that both of these differential equations have analytical (or closed-form) solutions, i.e., a solution that satisfies the differential equation can be expressed as a function.  This provides us instant gratification; we can (hopefully) clearly see how the parameters of the model (the mass, damping, etc.) affect the solution (how fast it changes, whether it oscillates, etc.).   Often the model we are intersted in using doesn't have a tractable analytical solution.  Instead we need to rely on numerical approximations to predict the response of our model using computational tools.
+
+Numerical solutions to the differential equations based models common in robotics can be implemented using numerical integration.  A simple, but sometimes brittle, algorithm is Euler integration.  The Euler method for solving the differential equation XXX is YYY.
+
+
+
+
+
+
+
