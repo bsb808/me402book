@@ -1,7 +1,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% ME 402 Book
+% Control of Mobile Robotics
 %
-% 2012  bbing  Created
+% 2013  bbing  Created
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \documentclass[11pt]{book}
@@ -38,13 +38,10 @@
 \usepackage{units}
 \setglossarysection{section}
 % Define a glossary for each chapter - all the file extensions need to be unique!
-\newglossary{measure}{agls}{aglo}{Glossary}
-\newglossary{dataacq}{bgls}{bglo}{Glossary}
-\newglossary{model1}{cgls}{cglo}{Glossary}
-\newglossary{model2}{dgls}{dglo}{Glossary}
-\newglossary{compare}{egls}{eglo}{Glossary}
-\newglossary{strain}{fgls}{fglo}{Glossary}
-\newglossary{linear}{ggls}{gglo}{Glossary}
+
+\newcommand{\myreg}{\textsuperscript{{\tiny \textregistered}}}
+
+\newglossary{linsys}{agls}{aglo}{Glossary}
 \makeglossaries
 \newcommand{\myglssym}[1] {\gls{#1}~(\glssymbol{#1})}
 \newcommand{\thisgls}{temp}  % define the current glossary (type in the _gls.tex files)
@@ -83,7 +80,7 @@
 \newif\ifsolutions
 %\solutionstrue  % if uncommented, will include solutions
 
-\graphicspath{{./}{./figs/}}
+\graphicspath{{./}{../figs/}}
 
 %\include{../latexlib/latex_cmds/Commands}  % shortcuts to thesis stuff
 %\include{../latexlib/latex_cmds/defs}
@@ -105,7 +102,7 @@
 \newcommand{\scaleOneTwo}[2] {\scalebox{#2}}
 
 % Graphics for this paper
-\graphicspath{{./figs/}}
+\graphicspath{{../figs/}}
 
 
 \newtheoremstyle{myex}% name
@@ -140,22 +137,31 @@
 \frontmatter
 % Book title
 \ifsolutions
-\newcommand{\thetitle}{Models to Measurements: \\Observing Dynamic Systems \\ WITH SOLUTIONS}
+\newcommand{\thetitle}{Control for Mobile Robots \\ WITH SOLUTIONS}
 \else
-\newcommand{\thetitle}{Models to Measurements: \\Observing Dynamic Systems}
+\newcommand{\thetitle}{Control for Mobile Robots}
 \fi
 \title{\thetitle}
 \author{Brian Bingham}
-\date{Revision 29\\14 February 2013}
+\date{Revision 1\\21 August 2013}
 
 % Title Page
 \maketitle
-\vspace{2in} % move below the horiz. line
+
+\vspace*{0.2in} % move below the horiz. line
  
 \begin{center}
 {\Large \thetitle}
-\vspace{0.5in}
 
+\vspace{0.25in}
+Attribution 
+
+\end{center}
+
+The \LaTeX\ typesetting and overall document format for this work is based on the book \emph{Physical Modeling in MATLAB\myreg} by Allen B. Downey, available at \url{http://greenteapress.com/matlab/} and distributed under the terms of the  Creative Commons Attribution-NonCommercial 3.0 Unported License.
+
+\vspace{0.25in}
+\begin{center}
 Copyright 2012 Brian Bingham
 \end{center}
 
@@ -163,14 +169,12 @@ Permission is granted to copy, distribute, and/or modify this document
 under the terms of the Creative Commons Attribution-NonCommercial 3.0 Unported
 License, which is available at \url{http://creativecommons.org/licenses/by-nc/3.0/}.
 
-The original form of this book is \LaTeX\ source code.  Compiling this
-code has the effect of generating a device-independent representation
-of a textbook, which can be converted to other formats and printed.
+The \LaTeX\ source code for this document is available upon request.
 
 % PREFACE AND CHAPTERS
-\include{MMpreface}
+\include{CMRpreface}
 % Contributors List
-\input{MMcontributors}
+\input{CMRcontributors}
 
 % TOC
 \setcounter{tocdepth}{1}
@@ -179,53 +183,15 @@ of a textbook, which can be converted to other formats and printed.
 \mainmatter
 
 % These are the chapters, prepended with the _gls (glossary) files
-\renewcommand{\thisgls}{dataacq}
-\input{MMmeasure_gls}
-\input{MMmeasure}
+\renewcommand{\thisgls}{linsys}
+\input{CMRlinsys_gls}
+\input{CMRlinsys}
 \printglossary[type=\thisgls]
 \glsresetall
 
-\renewcommand{\thisgls}{model1}
-\input{MMmodel1_gls}
-\input{MMmodel1}
-\printglossary[type=\thisgls]
-\glsresetall
-
-\renewcommand{\thisgls}{measure}
-\input{MMdataacq_gls}
-\input{MMdataacq}
-\printglossary[type=\thisgls]
-\glsresetall
-
-\renewcommand{\thisgls}{compare}
-\input{MMcompare_gls}
-\input{MMcompare}
-\printglossary[type=\thisgls]
-\glsresetall
-
-\renewcommand{\thisgls}{strain}
-\input{MMstrain_gls}
-\input{MMstrain}
-\printglossary[type=\thisgls]
-\glsresetall
-
-\renewcommand{\thisgls}{linear}
-\input{MMlinear_gls}
-\input{MMlinear}
-\printglossary[type=\thisgls]
-\glsresetall
-
-\renewcommand{\thisgls}{model2}
-\input{MMmodel2_gls}
-\input{MMmodel2}
-\printglossary[type=\thisgls]
-\glsresetall
-
-\input{MMaccel}
-
-
-\bibliographystyle{../latexlib/latex_ieee/IEEEtran}
-\bibliography{../bibtex/ref_bbing_master}
+%% Bibiliography
+%\bibliographystyle{../latexlib/latex_ieee/IEEEtran}
+%\bibliography{../bibtex/ref_bbing_master}
 
 
 % that's all folks
