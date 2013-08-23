@@ -4,9 +4,9 @@ Our goal is to develop the ability to control dynamic systems, in particular rob
 
 The models that we are concerned with developing are ones that behave similarly to the actual physical systems we wish to control.  A good place to start is with models that are linear because they are (relatively) easy to understand and provide a general set of abstractions that can be applied to a wide variety of physical implementations.
 
-In this chapter we will explore some basic matematical models and how they can be used to predict the behavior of physical systems.  We won't be modeling any mobile robots just yet, but this is the foundation on which we'll build our robot models.
+In this chapter we will explore some basic mathematical models and how they can be used to predict the behavior of physical systems.  We won't be modeling any mobile robots just yet, but this is the foundation on which we'll build our robot models.
 
-One cautionary note before we get started---all models are wrong.  By this we mean that mathematical models are abstract approximations of physical systems.  The model never predicts exactly how the actual system will behave under all circumstances.  Nevertheless simple models can provide a tremendous amount of insight into how a controller will function and allow us to prototype our ideas using analytical and numerical solutions before we go to the time and trouble of actually implementing a control solution.  Just as computer-aided design (CAD) tools allow us to conceive of and refine physical artifacts before we start fabridation, these models allow us to design and test our control solutions before releasing them into the wild.
+One cautionary note before we get started---all models are wrong.  By this we mean that mathematical models are abstract approximations of physical systems.  The model never predicts exactly how the actual system will behave under all circumstances.  Nevertheless simple models can provide a tremendous amount of insight into how a controller will function and allow us to prototype our ideas using analytical and numerical solutions before we go to the time and trouble of actually implementing a control solution.  Just as computer-aided design (CAD) tools allow us to conceive of and refine physical artifacts before we start fabrication, these models allow us to design and test our control solutions before releasing them into the wild.
 
 \section{First-Order Model}
 The mathematical models often used for understanding and developing controllers are differential equations.  To get started we will consider models that are linear (as opposed to non-linear), ordinary (as opposed to partial) differential equations.  
@@ -38,9 +38,102 @@ The mathematical models often used for understanding and developing controllers 
 %\section{The Transfer Function}
 
 \section{Numerical Solutions}
-One reason that the first and second order models are a good place to start our discussion is that both of these differential equations have analytical (or closed-form) solutions, i.e., a solution that satisfies the differential equation can be expressed as a function.  This provides us instant gratification; we can (hopefully) clearly see how the parameters of the model (the mass, damping, etc.) affect the solution (how fast it changes, whether it oscillates, etc.).   Often the model we are intersted in using doesn't have a tractable analytical solution.  Instead we need to rely on numerical approximations to predict the response of our model using computational tools.
+One reason that the first and second order models are a good place to start our discussion is that both of these differential equations have analytical (or closed-form) solutions, i.e., a solution that satisfies the differential equation can be expressed as a function.  This provides us instant gratification; we can (hopefully) clearly see how the parameters of the model (the mass, damping, etc.) affect the solution (how fast it changes, whether it oscillates, etc.).   Often the model we are interested in using doesn't have a tractable analytical solution.  Instead we need to rely on numerical approximations to predict the response of our model using computational tools.
 
-Numerical solutions to the differential equations based models common in robotics can be implemented using numerical integration.  A simple, but sometimes brittle, algorithm is Euler integration.  The Euler method for solving the differential equation XXX is YYY.
+\subsection{Solution for first-order ODE}
+Numerical solutions to the differential equations based models common in robotics can be implemented using numerical integration.  A simple, but sometimes brittle, algorithm is Euler integration.  Consider a first-order differential equation $\dot{y}(t)=f(t,y(t))$.  If we integrate this expression for $\dot{y}(t)$ will will generate a solution model---$y(t)$.   To get things started we also need to no the initial condition of the function, where to start, which can be expressed as $y(t=0)=y_0$.  Euler integration is now a set of discrete, repeated steps to approximate the solution.  We can start at our initial time $t=0$ were we already know the answer
+\[
+y(t=0) = y_0.
+\]
+Now we step forward in time by some small increment in time $dt$ 
+\begin{eqnarray}
+y(dt) & = & y(0) + \left(\dot{y}(0)\right)(dt) \\
+      & = & y_0 + (f(t=0,y(t=0)))(dt) \\
+      & = & y_0 + (f(0,y_0))(dt).
+\end{eqnarray}
+Then we can step forward again by the same time increment
+\begin{eqnarray}
+y(2(dt)) & = & y(dt) + \left(\dot{y}(dt)\right)(dt) \\
+         & = & \left(y_0 + (f(0,y_0))(dt)\right) + (f(dt,(y_0 + (f(0,y_0))(dt)))(dt).
+\end{eqnarray}
+As we continue to step forward we follow the same step: take the old value of $y(t)$, evaluate our expression for the derivative $\dot{y}$ at the previous time step and sum the previous value of $y(t)$ with the product of the derivative and step size $\dot{y}(t)(dt)$.  To express this efficiently we can break up continuous time into a set of discrete steps $t_k = t_0+k(dt)$.  The Euler method for solving this first-order ODE gives us an approximation for the solution at each of these discrete steps. This discrete values will be noted as $y[k] = y(t_k=t_0+k(dt)$ so we can now express the solution at discrete times as
+\[
+y[k+1] = y[k] + \dot{y}[k](dt) = y[k] + f(t_k,y[k])(dt).
+\]
+Now we have an algorithm that is well-suited for implementing with a computer program.  An illustrative example is given in Listing~\ref{l:firstorder_euler}.
+\lstinputlisting[style=myMatStyle,
+caption={Numerical solution for a first-order ODE using Euler integration: firstorder\_euler.m},
+label={l:firstorder_euler}]
+{../code/firstorder_euler.m}
+
+\begin{ex}
+Listing~\ref{l:carresp} illustrates how to graph the analytical solution to a first-order ODE model of a vehicle moving in one dimension.  Adapt Listing~\ref{l:firstorder_euler} to solve the same problem solved analytically in Listing~\ref{l:carresp}. 
+\begin{itemize}
+\item Create a graph that includes both the analytical solution and the numerical solution on the same axes.  You should use different line types (and/or symbols) along with a legend annotate the graph.
+\item Create a second graph that displays the error between the two solutions ($y_{\mathrm{analytical}} - y_{\mathrm{numerical}}$) as a function of time.
+\end{itemize}
+\end{ex}
+
+\begin{ex}
+Start with the program in Listing~\ref{l:firstorder_euler} and increase the value of the timestep ($dt$).  
+\begin{itemize}
+\item What is the maximum value of $dt$ that successfully reproduces the first-order response that we expect?  Report the maximum value of $dt$ and the ratio of $dt/\tau$.  
+\item Choose a value for $dt$ that is 1.8 times the size of the time constant.  Plot the numerical solution ($y(t)$) as a function of time.  Write a short explanation (a few sentences) to describe what you observe.
+\item Repeat the above exercise with a value of $dt$ that is 2.5 times the size of the time constant.
+\end{itemize}
+\end{ex}
+
+\ifsolutions
+
+
+\begin{figure}[hbt]
+\centering
+\includegraphics[width=\FigWidth\textwidth]{../code/firstorder_euler_soln.png}
+\caption{dt = 1.8 times tau}
+\label{f:euler_soln1}
+\end{figure}
+
+\begin{figure}[hbt]
+\centering
+\includegraphics[width=\FigWidth\textwidth]{../code/firstorder_euler_soln2.png}
+\caption{dt = 2.5 times tau}
+\label{f:euler_soln2}
+\end{figure}
+
+\begin{soln}
+\end{soln}
+\fi
+
+
+\subsection{Solution for higher-order ODEs}
+We can extend this same approach to higher order models.  The key step in this extension is to transform the higher order ODE into a set of first-order ODEs.  (When we discuss linear algebra later in this text we'll see how this can be done efficiently.)  To start with an example we'll revisit our canonical second order model from (\ref{e:second}) repeated here:
+\begin{equation} 
+\ddot{y}(t) + 2 \zeta \omega_n (\dot{y}(t)) + \omega_n^2 (y(t)) = f(t).
+\end{equation} 
+To transform this second order ODE into two coupled first order ODEs we need to introduce two auxiliary variables which we might call the \emph{states} of the system:
+\begin{eqnarray}
+x_1(t) & = & y(t) \\
+x_2(t) & = & \dot{y}(t).
+\end{eqnarray}
+Now we express the first derivative of these states using the second order model which yields
+\begin{eqnarray}
+\dot{x}_1(t) & = & \dot{y}(t) = x_2(t) \\
+\dot{x}_2(t) & = & \ddot{y}(t) = -2 \zeta \omega_n x_2(t) - \omega_n^2 x_1(t) + f(t) 
+\end{eqnarray}
+Next we use the same Euler integration approach above to step forward in time, starting from the initial conditions: $y(t=0)=x_1(t=0)=y_0$ and $\dot{y}(t=0)=x_2(t=0)=\dot{y}_0$.  This results in computational algorithm
+\begin{eqnarray}
+x_1[k+1] & = & x_1[k] + x_2[k](dt) \\
+x_2[k+1] & = & x_2[k] + \left(-2 \zeta \omega_n (x_2[k]) - \omega_n^2 (x_1[k]) + f[k]\right) (dt) 
+\end{eqnarray}
+where $f[k]$ is the forcing function (the input) at time $t=k(dt)$.
+
+\begin{ex}
+The analytical solution in (\ref{e:secondfree_annote} is the closed-form solution to our second order model.  Listing~\ref{l:secondfree} attempts to graph this solution given values for the model parameters and initial conditions.
+\begin{itemize}
+\item Develop a program to numerically approximate the solution of the model under these conditions and graph the solution $y(t)$ with respect to time.
+\item To develop this program you will have to have chosen a time increment size, a timestep.  Starting from a working simulation, increase the size of this timestep until the solution is no longer stable.  Report the maximum allowable timestep value as the value of $dt$ and the ratio of $dt/\omega$.
+\end{itemize}
+\end{ex}
 
 
 
