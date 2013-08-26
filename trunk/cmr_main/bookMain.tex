@@ -42,6 +42,7 @@
 \newcommand{\myreg}{\textsuperscript{{\tiny \textregistered}}}
 
 \newglossary{linsys}{agls}{aglo}{Glossary}
+\newglossary{feedback}{bgls}{bglo}{Glossary}
 \makeglossaries
 \newcommand{\myglssym}[1] {\gls{#1}~(\glssymbol{#1})}
 \newcommand{\thisgls}{temp}  % define the current glossary (type in the _gls.tex files)
@@ -78,7 +79,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Uncomment the second line to include solutions!
 \newif\ifsolutions
-\solutionstrue  % if uncommented, will include solutions
+%\solutionstrue  % if uncommented, will include solutions
 
 \graphicspath{{./}{../figs/}}
 
@@ -143,7 +144,7 @@
 \fi
 \title{\thetitle}
 \author{Brian Bingham}
-\date{Revision 1\\21 August 2013}
+\date{Revision 1\\26 August 2013}
 
 % Title Page
 \maketitle
@@ -154,15 +155,7 @@
 {\Large \thetitle}
 
 \vspace{0.25in}
-Attribution 
-
-\end{center}
-
-The \LaTeX\ typesetting and overall document format for this work is based on the book \emph{Physical Modeling in MATLAB\myreg} by Allen B. Downey, available at \url{http://greenteapress.com/matlab/} and distributed under the terms of the  Creative Commons Attribution-NonCommercial 3.0 Unported License.
-
-\vspace{0.25in}
-\begin{center}
-Copyright 2012 Brian Bingham
+Copyright 2013 Brian Bingham
 \end{center}
 
 Permission is granted to copy, distribute, and/or modify this document
@@ -188,6 +181,12 @@ The \LaTeX\ source code for this document is available upon request.
 \input{CMRlinsys}
 \printglossary[type=\thisgls]
 \glsresetall
+
+%\renewcommand{\thisgls}{feedback}
+%\input{CMRfeedback_gls}
+%\input{CMRfeedback}
+%\printglossary[type=\thisgls]
+%\glsresetall
 
 %% Bibiliography
 %\bibliographystyle{../latexlib/latex_ieee/IEEEtran}

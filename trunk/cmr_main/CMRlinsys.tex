@@ -1,12 +1,12 @@
 \chapter{Linear Systems}\label{c:linsys}
 \section{Introduction: Dynamic Models}
-Our goal is to develop the ability to control dynamic systems, in particular robot systems.  To develop these skills we need to be able to predict how a particular control approach (an algorithm) will perform: Will the control be stable?  Will it move the robot fast enough to the right place?  Mathematical models provide this predictive capability.  
+Our goal is to develop the ability to control dynamic systems, particularly mobile robots.  To develop these skills we need to be able to predict how a particular control approach (an algorithm) will perform: Will the control be stable?  Will it move the robot fast enough to the right place?  Mathematical models provide this predictive capability.  
 
-The models that we are concerned with developing are ones that behave similarly to the actual physical systems we wish to control.  A good place to start is with models that are linear because they are (relatively) easy to understand and provide a general set of abstractions that can be applied to a wide variety of physical implementations.
+The models that we are concerned with are ones that behave in similar ways to the actual physical systems we wish to control.  A good place to start is with models that are linear because they are (relatively) easy to understand and provide a general set of abstractions applicable to a wide variety of physical implementations.
 
 In this chapter we will explore some basic mathematical models and how they can be used to predict the behavior of physical systems.  We won't be modeling any mobile robots just yet, but this is the foundation on which we'll build our robot models.
 
-One cautionary note before we get started---all models are wrong.  By this we mean that mathematical models are abstract approximations of physical systems.  The model never predicts exactly how the actual system will behave under all circumstances.  Nevertheless simple models can provide a tremendous amount of insight into how a controller will function and allow us to prototype our ideas using analytical and numerical solutions before we go to the time and trouble of actually implementing a control solution.  Just as computer-aided design (CAD) tools allow us to conceive of and refine physical artifacts before we start fabrication, these models allow us to design and test our control solutions before releasing them into the wild.
+One cautionary note before we get started---all models are wrong.  By this we mean that mathematical models are abstract approximations of physical systems.  The model never predicts exactly how the actual system will behave under all circumstances.  Nevertheless simple models can provide a tremendous amount of insight into how a controller will function enabling us to prototype our ideas using analytical and numerical solutions before we go to the time and trouble of actually implementing a control solution.  Just as computer-aided design (CAD) tools allow us to conceive of and refine physical artifacts before we start fabrication, these models allow us to design and test our control solutions before releasing them into the wild.
 
 \section{First-Order Model}
 The mathematical models often used for understanding and developing controllers are differential equations.  To get started we will consider models that are linear (as opposed to non-linear), ordinary (as opposed to partial) differential equations.  
@@ -72,6 +72,7 @@ Listing~\ref{l:carresp} illustrates how to graph the analytical solution to a fi
 \item Create a graph that includes both the analytical solution and the numerical solution on the same axes.  You should use different line types (and/or symbols) along with a legend annotate the graph.
 \item Create a second graph that displays the error between the two solutions ($y_{\mathrm{analytical}} - y_{\mathrm{numerical}}$) as a function of time.
 \end{itemize}
+Your graphs should include labels on both axes, a title, a caption and a legend where appropriate.
 \end{ex}
 
 \begin{ex}
@@ -81,6 +82,7 @@ Start with the program in Listing~\ref{l:firstorder_euler} and increase the valu
 \item Choose a value for $dt$ that is 1.8 times the size of the time constant.  Plot the numerical solution ($y(t)$) as a function of time.  Write a short explanation (a few sentences) to describe what you observe.
 \item Repeat the above exercise with a value of $dt$ that is 2.5 times the size of the time constant.
 \end{itemize}
+Your graphs should include labels on both axes, a title, a caption and a legend where appropriate.
 \end{ex}
 
 \ifsolutions
