@@ -43,6 +43,7 @@
 
 \newglossary{linsys}{agls}{aglo}{Glossary}
 \newglossary{feedback}{bgls}{bglo}{Glossary}
+\newglossary{models}{cgls}{cglo}{Glossary}
 \makeglossaries
 \newcommand{\myglssym}[1] {\gls{#1}~(\glssymbol{#1})}
 \newcommand{\thisgls}{temp}  % define the current glossary (type in the _gls.tex files)
@@ -182,11 +183,17 @@ The \LaTeX\ source code for this document is available upon request.
 \printglossary[type=\thisgls]
 \glsresetall
 
-%\renewcommand{\thisgls}{feedback}
-%\input{CMRfeedback_gls}
-%\input{CMRfeedback}
-%\printglossary[type=\thisgls]
-%\glsresetall
+\renewcommand{\thisgls}{feedback}
+\input{CMRfeedback_gls}
+\input{CMRfeedback}
+\printglossary[type=\thisgls]
+\glsresetall
+
+\renewcommand{\thisgls}{models}
+\input{CMRmodels_gls}
+\input{CMRmodels}
+\printglossary[type=\thisgls]
+\glsresetall
 
 %% Bibiliography
 %\bibliographystyle{../latexlib/latex_ieee/IEEEtran}
