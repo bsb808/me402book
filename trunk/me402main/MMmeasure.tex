@@ -81,16 +81,23 @@ Remember, that our digital ruler can only report a 3-bit number.  From the illus
 
 Since we know the range of our measurement (\unit[1.0]{m}) and the total number of bits (3) we can convert to a length ($L$) using a ratio
 \begin{equation}
-L = FSR \left(\frac{X}{2^M - 1}\right
-) = (1.0 m)(4/7) = 0.57 m
+L = FSR \left(\frac{X+0.5}{2^M}\right) 
+= (1.0 m)\left(\frac{4.5}{8}\right) = \unit[0.56]{m}
 \end{equation}
-where $X$ is the decimal equivalent of our binary measurement ($100$).  
+where $X$ is the decimal equivalent of our binary measurement; the integer $4$ is the decimal equivalent of the binary value $100$.  
 
-From the illustration it should be clear that the resolution of this measurement is fairly course.  In particular, the resolution ($Q$) can be calculated using the full scale range and the number of bits in our instrument using the relationship
+From the illustration it should be clear that the resolution of this measurement is fairly coarse.  In particular, the resolution ($Q$) can be calculated using the full scale range and the number of bits in our instrument using the relationship
 \begin{equation}
 Q = \frac{FSR}{2^M} = \frac{\unit[1.0]{m}}{2^3} = \unit[0.125]{m}.
 \end{equation}
-So, in reality we might report our measurement as \unit[0.57]{m} with a resolution of  \unit[0.125]{m}.  In other words we are saying that the length of our fish is somewhere between \unit[0.51]{m} and \unit[0.63]{m}.  So any fish with a length between \unit[0.51]{m} and \unit[0.63]{m} would generate the same report from our digital ruler - $100$.
+So, in reality we might report our measurement as \unit[0.56]{m} with a resolution of \unit[0.125]{m}.  In other words, we are saying that the length of our fish is somewhere in the range of \unit[0.56$\pm$Q/2]{m}.  So any and all fish withbetween \unit[0.50]{m} and \unit[0.625]{m} long would generate the same report from our digital ruler: $100$. Figure~\ref{f:fish_units} illustrates the digital ruler with the analog length equivalents and the resolution of our analog-to-digital conversion.
+
+\begin{figure}[hbt!]
+\centering
+\includegraphics[width=\FigWidth\textwidth]{fish_units.png}
+\caption{Measuring our analog catch with a digital ruler.}
+\label{f:fish_units}
+\end{figure}
 
 \begin{ex}
 If we had a digital ruler with twice the number of bits (6-bits instead of 3-bits) what would be the resolution of our measurement be (with engineering units)?

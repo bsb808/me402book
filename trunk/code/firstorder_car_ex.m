@@ -4,13 +4,13 @@
 clear;
 
 % System Parameters 
-m = 15;       % mass [kg]
-b = 10;      % linear drag [Ns/m]
-Fstep = 100;  % amplitude of step force input [N]
+m = 800;       % mass [kg]
+b = 225;      % linear drag [Ns/m]
+Fstep = 15000;  % amplitude of step force input [N]
 
 % Describe a vector of times for the simulation
 dt = 0.1;   % Time step [s]
-Tend = 10;  % End of time horizon for simulation [s]
+Tend = 15;  % End of time horizon for simulation [s]
 tt = 0:dt:Tend;  
 
 % Analytical Solution
@@ -22,9 +22,9 @@ Veqn = Fstep/b*(1-exp(-tt/tau));
 % Plot the results
 figure(1)
 clf()
-plot(tt,Veqn,'b.')
+plot(tt,Veqn/0.447,'b.')
 xlabel('Time [sec]')  % Always label the axes and include units!
-ylabel('Velocity [m/s]')
+ylabel('Velocity [mph]')
 title('First-Order Step Response')
 grid on
 
