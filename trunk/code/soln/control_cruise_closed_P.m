@@ -1,6 +1,4 @@
-% Illustration of Euler method for solving a 1st order ODE
-% Given the ODE \dot{y} + (1/tau) y = F and initial conditions
-% Find a solution to the ODE - y(t)
+
 clear
 
 % Define the model parameters as constants
