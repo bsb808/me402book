@@ -9,7 +9,7 @@ One useful model mathematically moves on a two-dimensional plane.  Figure~\ref{f
 \label{f:uni_model}
 \end{figure}
 
-This model has three degrees of freedom; it can tranlate forward (the $u$ direction) and laterally (the $v$ direction) while rotating about the middle (the $\psi$ direction).  To describe this model we will use the following six states of the model, two inputs and five physical parameters.
+This model has three degrees of freedom; it can translate forward (the $u$ direction) and laterally (the $v$ direction) while rotating about the middle (the $\psi$ direction).  To describe this model we will use the following six states of the model, two inputs and five physical parameters.
 \begin{itemize}
 \item Model States
 \begin{itemize}
@@ -21,15 +21,15 @@ This model has three degrees of freedom; it can tranlate forward (the $u$ direct
 \end{itemize}
 \item Inputs
 \begin{itemize}
-\item $F$: Force input in the foward direction with respect to the body-frame.
+\item $F$: Force input in the forward direction with respect to the body-frame.
 \item $T$: Torque input in the counter-clockwise direction.
 \end{itemize}
 \item Model Parameters
 \begin{itemize}
-\item $M$: Tranlational intertia (mass) of the vehicle
+\item $M$: Translational inertia (mass) of the vehicle
 \item $I$: Rotational inertia (moment-of-inertia) of the vehicle
-\item $d_u$: Tranlational damping/drag on the vehicle in the forward ($u$) direction
-\item $d_v$: Tranlational damping/drag on the vehicle in the lateral ($v$) direction
+\item $d_u$: Translational damping/drag on the vehicle in the forward ($u$) direction
+\item $d_v$: Translational damping/drag on the vehicle in the lateral ($v$) direction
 \item $d_r$: Rotational damping/drag on the vehicle in the rotational ($\psi$) direction.
 \end{itemize}
 \end{itemize}
@@ -55,11 +55,11 @@ If the damping factors ($d_u$, $d_v$ and $d_r$) are constants, this model repres
 %This chapter is about \gls{robotmodel}s.
 
 \begin{ex}
-Derive the mathematical model in (\ref{e:kinetics}) based on the physics of a rigid body moving on a plane.  A good place to start is with a free-body-diagram.
+Derive the mathematical model in (\ref{e:direct_kinetics}) based on the physics of a rigid body moving on a plane.  A good place to start is with a free-body-diagram.
 \end{ex}
 
 \begin{ex}
-Write a computational simulation of the motion described in (\ref{e:kinematics}) and (\ref{e:kinetics}) using the Euler numerical integration method described in Section~\ref{s:numerical}.  Start by writing on paper the discrete-time formulation of the model and then write a program/script that instantiates the dynamics.  Use the following model parameters:
+Write a computational simulation of the motion described in (\ref{e:direct_kinematics}) and (\ref{e:direct_kinetics}) using the Euler numerical integration method described in Section~\ref{s:numerical}.  Start by writing on paper the discrete-time formulation of the model and then write a program/script that instantiates the dynamics.  Use the following model parameters:
 \begin{itemize}
 \item \unit[$M$]{kg}
 \item \unit[$I$]{kg m**2}
@@ -85,7 +85,7 @@ Re-write the simulation described in the previous exercise, but write the numeri
 \item The current state of the robot as a 6 element vector at time $k$.
 \item The current value for $F$
 \item The current value for $T$
-\item The size of the timestep $dt$
+\item The size of the time-step $dt$
 \end{itemize}
 The function should return a 6 element vector for the new state at time $k+1$.
 
@@ -101,15 +101,17 @@ Now you should have a function for the Euler integration step (going from time $
 %Write the simulation using some linear algebra
 %\end{ex}
 
-\
-\begin{ex}
-Write an open-loop  controller
-Write a closed-loop controller - include a maximum force
-\end{ex}
+%\
+%\begin{ex}
+%Write an open-loop  controller
+%Write a closed-loop controller - include a maximum force
+%\end{ex}
 
 \begin{ex}
-Reformulate for differential drive
-Figure~\ref{f:uni_model_diff}
+A very similar standard model captures the dynamics of the same robot with two different inputs.  Figure~\ref{f:uni_model_diff} illustrates the same scenario as Figure~\ref{f:uni_model}, but, instead of a forward thrust and torque inputs, this model considers two, independent thrust inputs $F_L$ and $F_R$ separated by a distance of $2r$.
+
+Re-write the equations (\ref{e:direct_kinematics} and (\ref{e:direct_kinetics}) for this new model.
+
 \end{ex}
 
 \begin{figure}[hbt]

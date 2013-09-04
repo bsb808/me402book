@@ -1,30 +1,120 @@
-\chapter{Feedback}\label{c:feedback}
-\section{Uses of Feedback}
+\chapter{Mobile Robot Models}\label{c:models}
+In this chapter specifies some robot models useful for prototyping control designs.  These are simple models that capture some of the key dynamics of the way mobile robots move.  
+\section{Direct Drive Horizontal Model}
+One useful model mathematically moves on a two-dimensional plane.  Figure~\ref{f:uni_model} illustrates the motion of this robot moving within a fixed (inertial) coordinate frame shown as $x-y$.
+\begin{figure}[hbt]
+\centering
+\includegraphics[width=\FigWidth\textwidth]{uni_model.png}
+\caption{Illustration of the direct drive horizontal robot model.}
+\label{f:uni_model}
+\end{figure}
 
-disturbance rejection
-parameter tracking
-command tracking
-\section{Anatomy of Feedback Control}
+This model has three degrees of freedom; it can tranlate forward (the $u$ direction) and laterally (the $v$ direction) while rotating about the middle (the $\psi$ direction).  To describe this model we will use the following six states of the model, two inputs and five physical parameters.
+\begin{itemize}
+\item Model States
+\begin{itemize}
+\item $x$ and $y$: Position of the vehicle with respect to a fixed frame of reference.
+\item $\psi$: Angular position of the vehicle relative to the $x$ axis.
+\item $u$: Forward velocity of the vehicle with respect to the body-frame.
+\item $v$: Lateral velocity of the vehicle with respect to the body-frame.
+\item $r$: Angular velocity of the vehicle.
+\end{itemize}
+\item Inputs
+\begin{itemize}
+\item $F$: Force input in the foward direction with respect to the body-frame.
+\item $T$: Torque input in the counter-clockwise direction.
+\end{itemize}
+\item Model Parameters
+\begin{itemize}
+\item $M$: Tranlational intertia (mass) of the vehicle
+\item $I$: Rotational inertia (moment-of-inertia) of the vehicle
+\item $d_u$: Tranlational damping/drag on the vehicle in the forward ($u$) direction
+\item $d_v$: Tranlational damping/drag on the vehicle in the lateral ($v$) direction
+\item $d_r$: Rotational damping/drag on the vehicle in the rotational ($\psi$) direction.
+\end{itemize}
+\end{itemize}
+
+The equations of motion can be written as  a set of six, coupled, first-order differential equations.
+
+\noindent
+Kinematics:
+\begin{eqnarray}\label{e:direct_kinematics}
+\dot{x} & = & \cos{(\psi)}u - \sin{(\psi)}v \\
+\dot{y} & = & \sin{(\psi)}u + \cos{(\psi)}v \\
+\dot{\psi} & = & r
+\end{eqnarray}
+
+\noindent
+Kinetics:
+\begin{eqnarray}\label{e:direct_kinetics}
+\dot{u} & = & -\frac{d_u}{M}u + \frac{1}{M}F \\
+\dot{v} & = & -\frac{d_v}{M}v \\
+\dot{r} & = & -\frac{d_r}{I}r + \frac{1}{I}T \\
+\end{eqnarray}
+If the damping factors ($d_u$, $d_v$ and $d_r$) are constants, this model represents linear drag behavior.
+%This chapter is about \gls{robotmodel}s.
+
+\begin{ex}
+Derive the mathematical model in (\ref{e:kinetics}) based on the physics of a rigid body moving on a plane.  A good place to start is with a free-body-diagram.
+\end{ex}
+
+\begin{ex}
+Write a computational simulation of the motion described in (\ref{e:kinematics}) and (\ref{e:kinetics}) using the Euler numerical integration method described in Section~\ref{s:numerical}.  Start by writing on paper the discrete-time formulation of the model and then write a program/script that instantiates the dynamics.  Use the following model parameters:
+\begin{itemize}
+\item \unit[$M$]{kg}
+\item \unit[$I$]{kg m**2}
+\item \unit[$d_u$]{x}
+\item \unit[$d_v$]{y}
+\item \unit[$d_r$]{z}
+\end{itemize}
+
+\noindent
+The initial conditions are $x=y=0$ and $\psi = \unit[\pi/4]{rad}$.  
+
+\noindent
+Test your simulation by creating graphs of the position ($y$ versus $x$) as well as the angular position ($\psi$ versus time) for the following test inputs:
+\begin{enumerate}
+\item $F = \unit[10]{N}$ and $T = \unit[0]{Nm}$
+\item $F = \unit[10]{N}$ and $T = \unit[1]{Nm}$
+\end{enumerate}
+\end{ex}
+
+\begin{ex}
+Re-write the simulation described in the previous exercise, but write the numerical integration step as a function.  The function should have the following inputs:
+\begin{itemize}
+\item The current state of the robot as a 6 element vector at time $k$.
+\item The current value for $F$
+\item The current value for $T$
+\item The size of the timestep $dt$
+\end{itemize}
+The function should return a 6 element vector for the new state at time $k+1$.
+
+Now you should have a function for the Euler integration step (going from time $k$ to time $k+1$ AND a program that simulates the dynamics by moving through a set of discrete time steps.  Re-run the test cases in the previous exercise to validate your results.
+\end{ex}
+
+
+%\begin{ex}
+%Choose a constant dt based on physical parameters
+%\end{ex}
+
+%\begin{ex}
+%Write the simulation using some linear algebra
+%\end{ex}
+
+\
+\begin{ex}
+Write an open-loop  controller
+Write a closed-loop controller - include a maximum force
+\end{ex}
+
+\begin{ex}
+Reformulate for differential drive
+Figure~\ref{f:uni_model_diff}
+\end{ex}
 
 \begin{figure}[hbt]
 \centering
-\includegraphics[width=\FigWidth\textwidth]{feedback.png}
-\caption{Canonical feedback control system block diagram.}
-\label{f:fdbk}
+\includegraphics[width=\FigWidth\textwidth]{uni_model_diff.png}
+\caption{Illustration of the differential drive variant of the horizontal robot model shown in Figure~\ref{f:uni_model}.}
+\label{f:uni_model_diff}
 \end{figure}
-
-process
-disturbance
-actuator
-plant 
-controller
-sensor
-
-
-\section{PID Control}
-
-\section{Assessing Stability}
-
-\section{Assessing Performance}
-
-This chapter is about \gls{feedback}s.
