@@ -52,7 +52,19 @@ Show that a first order system with {\bf positive} feedback can produce an unsta
 \end{ex}
 
 \section{Assessing Performance}
-
+One way of quantifying the performance of a closed-loop design is to assess particular aspects of the step response of the system, i.e., the time response of the output of the system to a step change in input.  These quantities can also be sued to specify the requirements of a design.  We'll concentrate on the time-domain specifications illustrated in Figure~\ref{f:tdomain_resp}:
+\begin{description}
+\item[Rise Time] ($t_r$) the time it takes the system output to go from 10\% to 90\% of the steady-state value,
+\item[Settling Time] ($t_s$) the time it takes the system output transients to decay to within 1\% of the steady-state value,
+\item[Overshoot] ($OS$) the maximum amount the system exceeds the steady-state value after achieving the value the first time, expressed as a percentage or as an absolute value with the same units as the output,
+\item[Stead-State Error] ($e_{ss}$) the absolute difference between the steady-state output and the command\footnote{The terms \emph{command}, \emph{goal}, \emph{reference} and \emph{setpoint} are all interchangeable in this context.}, expressed as a percentage or with the same units as the output.
+\end{description}
+\begin{figure}[hbt]
+\centering
+\includegraphics[width=\FigWidth\textwidth]{tdomain_resp.png}
+\caption{Illustration of time-domain performance assessment metrics based on the step response of a closed-loop system.}
+\label{f:tdomain_resp}
+\end{figure}
 
 
 \section{Exercises}
