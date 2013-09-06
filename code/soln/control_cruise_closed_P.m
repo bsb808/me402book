@@ -6,7 +6,7 @@ m = 800;       % mass [kg]
 b = 225;      % linear drag [Ns/m]
 
 % Control Gains
-Kp = 1;
+Kp = 1000;
 % Control Reference
 r = 60*0.447;
 

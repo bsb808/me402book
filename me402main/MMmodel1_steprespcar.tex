@@ -44,13 +44,13 @@ Consider the step response to our car model (\ref{e:car2}) with the parameters g
 \begin{soln}
 Here is a solution.
 \begin{itemize}
-\item The steady-state value is $V_{ss}=F/b$ and \unit[60]{mph} is approximately \unitfrac[27]{m}{s}.  Since $b=\unitfrac[150]{Ns}{m}$, $F_{min}=\unit[4050]{N}$.
+\item The steady-state value is $V_{ss}=F/b$ and \unit[60]{mph} is approximately \unitfrac[27]{m}{s}.  Since $b=\unitfrac[225]{Ns}{m}$, $F_{min}=\unit[6075]{N}$.
 \item Interestingly the car never truly gets all the way to the final steady-state value!  After five time constants ($t=5\tau$=\unit[25]{s}) the car is 99\% of the way to \unit[60]{mph}
 \item If we double this input force...
 \begin{itemize}
 \item The car takes about \unit[4]{s} to get to \unit{60}{mph} (\unitfrac[27]{m}{s}).
-\item The new top speed is double of the original top speed---\unit[120]{m/s}.  This is because the system is linear!
-\item Again, it never really gets there.  It gets 99\% of the way there after five time constants (\unit[25]{s}).
+\item The new top speed is double of the original top speed---\unit[120]{mph}.  This is because the system is linear!
+\item Again, it never really gets there.  It gets 99\% of the way there after five time constants: $\tau=m/b=\unit[3.5]{s}$ so $5\tau=\unit[17.8]{s}$.
 \end{itemize}
 \end{itemize}
 \end{soln}

@@ -61,11 +61,11 @@ Derive the mathematical model in (\ref{e:direct_kinetics}) based on the physics 
 \begin{ex}
 Write a computational simulation of the motion described in (\ref{e:direct_kinematics}) and (\ref{e:direct_kinetics}) using the Euler numerical integration method described in Section~\ref{s:numerical}.  Start by writing on paper the discrete-time formulation of the model and then write a program/script that instantiates the dynamics.  Use the following model parameters:
 \begin{itemize}
-\item \unit[$M$]{kg}
-\item \unit[$I$]{kg m**2}
-\item \unit[$d_u$]{x}
-\item \unit[$d_v$]{y}
-\item \unit[$d_r$]{z}
+\item $M=\unit[10]{kg}$
+\item $I=\unit[10]{kg m^2}$
+\item $d_u=\unitfrac[5]{N}{m/s}$
+\item $d_v=\unitfrac[25]{N}{m/s}$
+\item $d_r=\unitfrac[4]{N}{rad/s}$
 \end{itemize}
 
 \noindent
@@ -75,8 +75,15 @@ The initial conditions are $x=y=0$ and $\psi = \unit[\pi/4]{rad}$.
 Test your simulation by creating graphs of the position ($y$ versus $x$) as well as the angular position ($\psi$ versus time) for the following test inputs:
 \begin{enumerate}
 \item $F = \unit[10]{N}$ and $T = \unit[0]{Nm}$
+\item $F = \unit[0]{N}$ and $T = \unit[1]{Nm}$
 \item $F = \unit[10]{N}$ and $T = \unit[1]{Nm}$
 \end{enumerate}
+
+
+Note, you should be able to analytically predict the maximum (steady-state) tranlational and rotational velocities for this sytem.  This prediction will help you debug your simulation; if you know the analytical solution, you can determine if your simulation is 'working'.  You should also be able to predict the time constants associated with these first order equations.  This should give you some guidance about how small you will need to make $dt$ in your numerical integration.
+
+Submit graphs that illustrate your numerical solution for the three test cases above.  These graphs should be discussed with brief text to clearly illustrate what you are trying to show.  Remember to use labels with units!
+
 \end{ex}
 
 \begin{ex}
