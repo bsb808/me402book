@@ -107,26 +107,26 @@ Your graphs should include labels on both axes, a title, a caption and a legend 
 \fi
 
 
-\subsection{Solution for higher-order ODEs}
+\subsection{Solution for higher-order ODEs}\label{ss:higher-order}
 We can extend this same approach to higher order models.  The key step in this extension is to transform the higher order ODE into a set of first-order ODEs.  (When we discuss linear algebra later in this text we'll see how this can be done efficiently.)  To start with an example we'll revisit our canonical second order model from (\ref{e:second}) repeated here:
 \begin{equation} 
 \ddot{y}(t) + 2 \zeta \omega_n (\dot{y}(t)) + \omega_n^2 (y(t)) = f(t).
 \end{equation} 
 To transform this second order ODE into two coupled first order ODEs we need to introduce two auxiliary variables which we might call the \emph{states} of the system:
-\begin{eqnarray}
-x_1(t) & = & y(t) \\
-x_2(t) & = & \dot{y}(t).
-\end{eqnarray}
+\begin{align}
+x_1(t) & = y(t) \nonumber \\
+x_2(t) & = \dot{y}(t).
+\end{align}
 Now we express the first derivative of these states using the second order model which yields
-\begin{eqnarray}
-\dot{x}_1(t) & = & \dot{y}(t) = x_2(t) \\
-\dot{x}_2(t) & = & \ddot{y}(t) = -2 \zeta \omega_n x_2(t) - \omega_n^2 x_1(t) + f(t) 
-\end{eqnarray}
+\begin{align}
+\dot{x}_1(t) & = \dot{y}(t) = x_2(t) \nonumber \\
+\dot{x}_2(t) & = \ddot{y}(t) = -2 \zeta \omega_n x_2(t) - \omega_n^2 x_1(t) + f(t) 
+\end{align}
 Next we use the same Euler integration approach above to step forward in time, starting from the initial conditions: $y(t=0)=x_1(t=0)=y_0$ and $\dot{y}(t=0)=x_2(t=0)=\dot{y}_0$.  This results in computational algorithm
-\begin{eqnarray}
-x_1[k+1] & = & x_1[k] + x_2[k](dt) \\
-x_2[k+1] & = & x_2[k] + \left(-2 \zeta \omega_n (x_2[k]) - \omega_n^2 (x_1[k]) + f[k]\right) (dt) 
-\end{eqnarray}
+\begin{align}\label{e:2nd-euler}
+x_1[k+1] & = x_1[k] + x_2[k](dt) \nonumber \\
+x_2[k+1] & = x_2[k] + \left(-2 \zeta \omega_n (x_2[k]) - \omega_n^2 (x_1[k]) + f[k]\right) (dt) 
+\end{align}
 where $f[k]$ is the forcing function (the input) at time $t=k(dt)$.
 
 \begin{ex}
