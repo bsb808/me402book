@@ -1,0 +1,91 @@
+\chapter{State Space}\label{c:statespace}
+\section{Introduction}
+State-space is representation of dynamic models based on presenting the governing equations as a set of first-order differential equations.  This representation makes heavy use of linear algebra to compactly capture the set of differential equations.  By using this representation for the ODE-based models we can bring considerable mathematical tools to bear on the problem, giving us new methods to analyze the system, predict stability and performance and synthesize control algorithms.
+
+
+\section{Canonical State-Space Form}
+As the name implies, the state space representation is based on the state of the system, represented by a vector with $n$ elements. (The system is $n^{th}$ order.)  The representative form of a state space mathematical expression for a model with linear, time-invariant dynamics is a set of two matrix equations
+\begin{align}\label{e:state-space}
+\dot{\V{x}}(t) & = \V{A} \V{x}(t) + \V{B}\V{u}(t) \nonumber \\
+\V{y}(t) & = \V{C}\V{x}(t) + \V{D}\V{u}(t)
+\end{align}
+where
+\begin{itemize}
+\item $\V{x}$(t) is the $n \times 1$ state vector,
+\item $\V{A}$ is the $n \times n$ system matrix,
+\item $\V{B}$ is the $n \times m$ input matrix,
+\item $\V{u}$(t) is the $m \times 1$ input vector,
+\item $\V{y}$(t) is the $p \times 1$ output vector,
+\item $\V{C}$ is the $p \times n$ output matrix, and
+\item $\V{D}$ is the $p \times m$ direct transmission matrix.
+\end{itemize}
+The first equation in (\ref{e:state-space}) captures the dynamics of the system---how the state changes with time and in response to a set of inputs $\V{u}$.  The second equation in (\ref{e:state-space}) describes how the outputs of the system $\V{y}$ (typically the quantities we can observe or measure) are related to the internal states of the system and perhaps the input.
+
+Note: We will try to be consistent with the notation.  A vector is represented by a bold, lower-case variable.  A matrix is represented by a bold, upper-case variable.
+
+The continuous-time dynamics of the mathematical model are described in (\ref{e:state-space}).  A discrete time approximation can be written in a similar form
+\begin{align}
+\label{e:state-spaced}
+\V{x}[k+1] & = \V{F} \V{x}[k] + \V{G}\V{u}[k] \nonumber \\
+\V{y}[k] & = \V{C}\V{x}[k] + \V{J}\V{u}[k]
+\end{align}
+where
+\begin{itemize}
+\item $\V{x}[k]$ is the $n \times 1$ state vector at time $t=k(dt)$,
+\item $\V{G}$ is the $n \times n$ system matrix,
+\item $\V{F}$ is the $n \times m$ input matrix,
+\item $\V{u}[k]$ is the $m \times 1$ input vector at time $t=k(dt)$,
+\item $\V{y}[k]$ is the $p \times 1$ output vector at time $t=k(dt)$,
+\item $\V{C}$ is the $p \times n$ output matrix, and
+\item $\V{J}$ is the $p \times m$ direct transmission matrix.
+\end{itemize}
+You might notice that the $\V{C}$ matrix is equivalent in both (\ref{e:state-space}) and (\ref{e:state-spaced}) but otherwise the matricies are different.
+
+\subsection{Example: Second-Order System}
+Recall in Section~\ref{ss:higher-order} that we transformed our second-order model 
+\begin{equation}\label{e:2ndagain}
+\ddot{y}(t) + 2 \zeta \omega_n (\dot{y}(t)) + \omega_n^2 (y(t)) = f(t)
+\end{equation}
+into two coupled first-order ODEs by defining two states of the system
+\begin{align}\label{e:2states}
+x_1(t) & = y(t) \nonumber \\
+x_2(t) & = \dot{y}(t).
+\end{align}
+We can now write this model in our canonical state space form with the state vector
+\[
+\V{x}(t)  =  \left\{ \begin{array}{c}
+x_1(t) \\
+x_2(t) 
+\end{array} \right\}
+\]
+as 
+\begin{align}\label{e:state-space-2d}
+\dot{\V{x}}(t) & = \left[ \begin{array}{cc}
+0 & 1 \\
+-\omega_n^2 & -2 \zeta \omega_n  
+\end{array} \right] \V{x}(t) + 
+\left[ \begin{array}{c}
+0 \\
+1
+\end{array}\right]
+f(t) \nonumber \\
+y(t) & = \left[ \begin{array}{cc} 1 & 0 \end{array} \right] \V{x}(t)
+\end{align}
+
+\begin{ex}
+Write a new state space description of the model (\ref{e:2ndagain}) with the state definition
+\[
+\V{x}(t)  =  \left\{ \begin{array}{c}
+\dot{y}(t) \\
+y(t)
+\end{array} \right\}.
+\]
+As shown in the example, the input to the sytem is the scalar $f(t)$ and the output of the system is the scalar $y(t)$. 
+\end{ex}
+
+\begin{ex}
+Write the discrete approximation of our second-order ODE given in (\ref{e:2nd-euler} in the discrete state-space form (\ref{e:state-spaced}.  Note that $\V{F}$ and $\V{G}$ will be functions of the timestep $dt$.
+\end{ex}
+
+
+

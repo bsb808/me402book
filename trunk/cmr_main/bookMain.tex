@@ -36,6 +36,12 @@
 %\usepackage[xindy,toc]{glossaries}
 %\usepackage[toc]{glossaries}
 \usepackage{units}
+
+% Custom definitions
+\input{../defs/Commands}
+\input{../defs/defs}
+
+
 \setglossarysection{section}
 % Define a glossary for each chapter - all the file extensions need to be unique!
 
@@ -44,6 +50,7 @@
 \newglossary{linsys}{agls}{aglo}{Glossary}
 \newglossary{feedback}{bgls}{bglo}{Glossary}
 \newglossary{models}{cgls}{cglo}{Glossary}
+\newglossary{statespace}{dgls}{dglo}{Glossary}
 \makeglossaries
 \newcommand{\myglssym}[1] {\gls{#1}~(\glssymbol{#1})}
 \newcommand{\thisgls}{temp}  % define the current glossary (type in the _gls.tex files)
@@ -192,6 +199,12 @@ The \LaTeX\ source code for this document is available upon request.
 \renewcommand{\thisgls}{models}
 \input{CMRmodels_gls}
 \input{CMRmodels}
+\printglossary[type=\thisgls]
+\glsresetall
+
+\renewcommand{\thisgls}{statespace}
+\input{CMRstatespace_gls}
+\input{CMRstatespace}
 \printglossary[type=\thisgls]
 \glsresetall
 
