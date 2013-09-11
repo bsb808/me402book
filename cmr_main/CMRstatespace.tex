@@ -6,8 +6,8 @@ State-space is representation of dynamic models based on presenting the governin
 \section{Canonical State-Space Form}
 As the name implies, the state space representation is based on the state of the system, represented by a vector with $n$ elements. (The system is $n^{th}$ order.)  The representative form of a state space mathematical expression for a model with linear, time-invariant dynamics is a set of two matrix equations
 \begin{align}\label{e:state-space}
-\dot{\V{x}}(t) & = \V{A} \V{x}(t) + \V{B}\V{u}(t) \nonumber \\
-\V{y}(t) & = \V{C}\V{x}(t) + \V{D}\V{u}(t)
+\dot{\V{x}}(t) & = \V{A} \cdot \V{x}(t) + \V{B} \cdot \V{u}(t) \nonumber \\
+\V{y}(t) & = \V{C} \cdot \V{x}(t) + \V{D} \cdot \V{u}(t)
 \end{align}
 where
 \begin{itemize}
@@ -17,17 +17,20 @@ where
 \item $\V{u}$(t) is the $m \times 1$ input vector,
 \item $\V{y}$(t) is the $p \times 1$ output vector,
 \item $\V{C}$ is the $p \times n$ output matrix, and
-\item $\V{D}$ is the $p \times m$ direct transmission matrix.
+\item $\V{D}$\footnote{Often the direct transmission term can be omitted because the input does not directly influence the output in the governing equations.} is the $p \times m$ direct transmission matrix\footnote{
+Notation: We will try to be consistent with the following notation.  A vector variable is represented by a bold, lower-case variable, and when the elements of the vector shown curly brackets ($\mathbf{\{\}}$) are used.  A matrix variable is represented by a bold, upper-case variable, and when the elements of the matrix are shown square brackets ($\mathbf{[]}$) are used.  In (\ref{e:state-space}) the matrix products are highlighted by the dot-operator (e.g, $\V{A} \cdot \V{x}(t)$); for brevity this operator will not be included as we move forward.
+}.
 \end{itemize}
 The first equation in (\ref{e:state-space}) captures the dynamics of the system---how the state changes with time and in response to a set of inputs $\V{u}$.  The second equation in (\ref{e:state-space}) describes how the outputs of the system $\V{y}$ (typically the quantities we can observe or measure) are related to the internal states of the system and perhaps the input.
 
-Note: We will try to be consistent with the notation.  A vector is represented by a bold, lower-case variable.  A matrix is represented by a bold, upper-case variable.
+
+
 
 The continuous-time dynamics of the mathematical model are described in (\ref{e:state-space}).  A discrete time approximation can be written in a similar form
 \begin{align}
 \label{e:state-spaced}
 \V{x}[k+1] & = \V{F} \V{x}[k] + \V{G}\V{u}[k] \nonumber \\
-\V{y}[k] & = \V{C}\V{x}[k] + \V{J}\V{u}[k]
+\V{y}[k] & = \V{H}\V{x}[k] + \V{J}\V{u}[k]
 \end{align}
 where
 \begin{itemize}
@@ -36,10 +39,9 @@ where
 \item $\V{F}$ is the $n \times m$ input matrix,
 \item $\V{u}[k]$ is the $m \times 1$ input vector at time $t=k(dt)$,
 \item $\V{y}[k]$ is the $p \times 1$ output vector at time $t=k(dt)$,
-\item $\V{C}$ is the $p \times n$ output matrix, and
+\item $\V{H}$ is the $p \times n$ output matrix, and
 \item $\V{J}$ is the $p \times m$ direct transmission matrix.
 \end{itemize}
-You might notice that the $\V{C}$ matrix is equivalent in both (\ref{e:state-space}) and (\ref{e:state-spaced}) but otherwise the matricies are different.
 
 \subsection{Example: Second-Order System}
 Recall in Section~\ref{ss:higher-order} that we transformed our second-order model 
@@ -80,12 +82,80 @@ Write a new state space description of the model (\ref{e:2ndagain}) with the sta
 y(t)
 \end{array} \right\}.
 \]
-As shown in the example, the input to the sytem is the scalar $f(t)$ and the output of the system is the scalar $y(t)$. 
+As shown in the example, the input to the system is the scalar $f(t)$ and the output of the system is the scalar $y(t)$. 
 \end{ex}
 
 \begin{ex}
-Write the discrete approximation of our second-order ODE given in (\ref{e:2nd-euler} in the discrete state-space form (\ref{e:state-spaced}.  Note that $\V{F}$ and $\V{G}$ will be functions of the timestep $dt$.
+Write the discrete approximation of our second-order ODE given in (\ref{e:2nd-euler} in the discrete state-space form (\ref{e:state-spaced}.  Note that $\V{F}$ and $\V{G}$ will be functions of the time-step $dt$.
 \end{ex}
+
+
+\section{Numerical Approximation}
+Once we have out model dynamics expressed in state space form (\ref{e:state-space}) there are a variety of ways of approximating the solution to this set of ODEs using numerical integration.  Perhaps the simplest (but not terribly accurate) method is to apply the forward Euler method discussed in Section~\ref{s:numerical}, expanding the approach from scalar-valued ODEs to vector-valued ODEs.  Using this technique we can approximate the state at time $k+1$ using the previous state, the rate-of-change of the state given by (\ref{e:state-space}) and the constant scalar value for the time-step ($\dt$) as
+\begin{align}
+\label{e:state-space-euler}
+\V{x}[k+1] & = \V{x}[k] + \dot{\V{x}}[k](\dt) \nonumber \\
+           & = \V{x}[k] + \left[\V{A}\V{x}[k]+\V{B}\V{u}[k]\right](\dt) \nonumber \\
+           & = \left[\V{I}+\V{A}(\dt)\right]\V{x}[k] + \left[\V{B}(\dt)\right]\V{u}[k]. \nonumber \\
+\V{y}[k+1] & = \V{C}\V{x}[k+1] + \V{D}\V{u}[k]
+\end{align}
+So using Euler integration our numerical approximation (\ref{e:state-spaced}) of the continuous time state space model is
+\begin{align}
+\label{e:state-space-euler2}
+\V{F} & = \left[\V{I}+\V{A}(\dt)\right] \nonumber \\
+\V{G} & = \left[\V{B}(\dt)\right] \nonumber \\
+\V{H} & = \V{C} \nonumber \\
+\V{J} & = \V{D}
+\end{align}
+
+\section{Exercises}
+\begin{ex}
+Write the equations of motion for our direct drive horizontal model ((\ref{e:direct_kinematics}) and (\ref{e:direct_kinetics})) in the canonical state space form (\ref{e:state-space}).  This system is non-linear so the matrices will be non-linear functions of some of the state variables.
+\end{ex}
+
+\begin{ex}
+Create a computational simulation of the model (i.e, a numerical approximation of the solution to the system of ODEs) using the parameters given in Exercise~\ref{ex:direct_sim}.  Formulate your numerical approximation using the continuous-time dynamics (in state space form) and the forward Euler approximation (\ref{e:state-space-euler}).  This computational solution should make use of matrix operations (multiplication). 
+
+Illustrate that your simulation behaves the same as your scalar implementation from Exercise~\ref{ex:direct_sim}.
+\end{ex}
+
+\section{Control Exercises}
+
+\begin{ex}
+In this exercise you will develop a cruise control algorithm for the direct drive robot model in (\ref{e:direct_kinematics}) and (\ref{e:direct_kinetics}).  Use the parameters in given in Exercise~\ref{ex:direct_sim} for the model.  In addition our robot has limited actuation authority; it can supply a maximum of \unit[10]{N} of thrust and \unit[10]{N$\cdot$m} of torque.  Your controllers should attempt to minimize rise-time, overshoot and steady-state error while observing these maximums.
+
+Start by working on a heading controller.  Develop a control algorithm that takes a heading setpoint and calculates a torque to achieve the setpoint.  You can test the response of this algorithm using step inputs.  A reasonable size of the step input is $\pi/2$ radians.  To deal with any quadrant errors it is recommended that you verify your heading controller works for the following scenarios:
+\begin{itemize}
+\item Initial Heading: \unit[0]{rad}, Heading Goal: \unit[$pi/2$]{rad}
+\item Initial Heading: \unit[0]{rad}, Heading Goal: \unit[-$pi/2$]{rad}
+\item Initial Heading: \unit[$3\pi/4$]{rad}, Heading Goal: \unit[$5pi/4$]{rad}
+\item Initial Heading: \unit[$5\pi/4$]{rad}, Heading Goal: \unit[$3pi/4$]{rad}
+\end{itemize}
+This assumes all other states have zero initial conditions.
+
+Now put that aside and work on a velocity controller (with no heading control).  Develop a control algorithm that takes a velocity setpoint and calculates a forward thrust to achieve the setpoint.  Test your controller with the following scenarios:
+\begin{itemize}
+\item Initial Heading: \unit[0]{rad}, Initial Forward Velocity: \unitfrac[0]{m}{s}, Velocity Goal: \unitfrac[1.0]{m}{s}
+\item Initial Heading: \unit[0]{rad}, Initial Forward Velocity: \unitfrac[1.0]{m}{s}, Velocity Goal: \unitfrac[0]{m}{s}
+\end{itemize}
+
+Now we are ready to put these two independent controllers together into a \emph{hybrid} controller to regulate both heading and velocity.  Demonstrate the behavior of your controller with the following sequential commands:
+\begin{enumerate}
+\item Begin with zero initial conditions on all states
+\item Provide your controller with a heading goal of \unit[$\pi/4$]{rad} and a velocity goal of \unitfrac[0.5]{m}{s} for \unit[5]{s}.
+\item Provide your controller with a heading goal of \unit[$3\pi/4$]{rad} and a velocity goal of \unitfrac[1.0]{m}{s} for \unit[5]{s}.
+\end{enumerate}
+
+Submit the following:
+\begin{itemize}
+\item A short description of your heading and velocity controllers - what are your controllers doing?
+\item A graph of the x-y position of reported by your model for the final scenario.
+\item Graphs of the states of your model as a function of time for the final scenario.
+\item A discussion of what is pertinent in the graphs - what do you observe that makes you think the simulation and controllers are acting appropriately?
+\end{itemize}
+\end{ex}
+
+
 
 
 
