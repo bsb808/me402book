@@ -38,19 +38,19 @@ The equations of motion can be written as  a set of six, coupled, first-order di
 
 \noindent
 Kinematics:
-\begin{eqnarray}\label{e:direct_kinematics}
-\dot{x} & = & \cos{(\psi)}u - \sin{(\psi)}v \\
-\dot{y} & = & \sin{(\psi)}u + \cos{(\psi)}v \\
-\dot{\psi} & = & r
-\end{eqnarray}
+\begin{align}\label{e:direct_kinematics}
+\dot{x} & = \cos{(\psi)}u - \sin{(\psi)}v \nonumber \\
+\dot{y} & = \sin{(\psi)}u + \cos{(\psi)}v \nonumber \\
+\dot{\psi} & = r
+\end{align}
 
 \noindent
 Kinetics:
-\begin{eqnarray}\label{e:direct_kinetics}
-\dot{u} & = & -\frac{d_u}{M}u + \frac{1}{M}F \\
-\dot{v} & = & -\frac{d_v}{M}v \\
-\dot{r} & = & -\frac{d_r}{I}r + \frac{1}{I}T \\
-\end{eqnarray}
+\begin{align}\label{e:direct_kinetics}
+\dot{u} & = -\frac{d_u}{M}u + \frac{1}{M}F \nonumber \\
+\dot{v} & = -\frac{d_v}{M}v \nonumber \\
+\dot{r} & = -\frac{d_r}{I}r + \frac{1}{I}T \\
+\end{align}
 If the damping factors ($d_u$, $d_v$ and $d_r$) are constants, this model represents linear drag behavior.
 %This chapter is about \gls{robotmodel}s.
 
@@ -58,7 +58,7 @@ If the damping factors ($d_u$, $d_v$ and $d_r$) are constants, this model repres
 Derive the mathematical model in (\ref{e:direct_kinetics}) based on the physics of a rigid body moving on a plane.  A good place to start is with a free-body-diagram.
 \end{ex}
 
-\begin{ex}
+\begin{ex}\label{ex:direct_sim}
 Write a computational simulation of the motion described in (\ref{e:direct_kinematics}) and (\ref{e:direct_kinetics}) using the Euler numerical integration method described in Section~\ref{s:numerical}.  Start by writing on paper the discrete-time formulation of the model and then write a program/script that instantiates the dynamics.  Use the following model parameters:
 \begin{itemize}
 \item $M=\unit[10]{kg}$
