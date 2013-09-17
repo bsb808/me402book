@@ -51,6 +51,7 @@
 \newglossary{feedback}{bgls}{bglo}{Glossary}
 \newglossary{models}{cgls}{cglo}{Glossary}
 \newglossary{statespace}{dgls}{dglo}{Glossary}
+\newglossary{behavior}{egls}{eglo}{Glossary}
 \makeglossaries
 \newcommand{\myglssym}[1] {\gls{#1}~(\glssymbol{#1})}
 \newcommand{\thisgls}{temp}  % define the current glossary (type in the _gls.tex files)
@@ -152,7 +153,7 @@
 \fi
 \title{\thetitle}
 \author{Brian Bingham}
-\date{Revision 1\\26 August 2013}
+\date{Revision 5\\17 September 2013}
 
 % Title Page
 \maketitle
@@ -205,6 +206,12 @@ The \LaTeX\ source code for this document is available upon request.
 \renewcommand{\thisgls}{statespace}
 \input{CMRstatespace_gls}
 \input{CMRstatespace}
+\printglossary[type=\thisgls]
+\glsresetall
+
+\renewcommand{\thisgls}{behavior}
+\input{CMRbehavior_gls}
+\input{CMRbehavior}
 \printglossary[type=\thisgls]
 \glsresetall
 
