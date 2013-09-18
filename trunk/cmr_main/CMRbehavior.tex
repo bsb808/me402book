@@ -16,8 +16,9 @@ In this chapter we'll develop two examples of behavior controllers where we want
 \label{f:uni_fdbk_behave}
 \end{figure}
 
+
 \section{Waypoint Control}
-Often we would like to control the position of a mobile robot, giving it commands that consist of a sequential list of waypoints to achieve.  Figure~\ref{f:waypoint} illustrates this scenario with our horizontal, direct-drive robot model.  Our challenge is to design a control algorithm for the force ($F$) and torque ($T$) inputs that will minimize the error between the robot position ($(x,y)$) and the waypoint position ($(x_1,y_1)$).  
+Often we would like to control the position of a mobile robot, giving it commands that consist of a sequential list of waypoints to achieve.  Figure~\ref{f:waypoint} illustrates this scenario with our horizontal, direct-drive robot model.  Our challenge is to design a control algorithm for the force ($F$) and torque ($T$) inputs that will minimize the error between the robot position $(x,y)$ and the waypoint position $(x_1,y_1)$.  
 
 \begin{figure}[hbt]
 \centering
@@ -61,9 +62,20 @@ A common mistake in calculating $\psi_{\mathrm{goal}}$ is to not properly consid
 \label{f:waypoint_annote}
 \end{figure}
 
+\begin{ex}
+Building on the heading/speed controller you developed in Exercise~\ref{ex:state_cntrl}, develop a waypoint controller.  The goal is to start with all six initial states at zero and control the direct-drive robot model to reach a final waypoint of $(x=25,y=35)$ at a speed of \unitfrac[1.0]{m}{s}.  (You may want to slow down as you get close to the waypoint!)  Your governing equations, model parameters and thrust/torque limits should be the same as stated in Exercise~\ref{ex:state_cntrl}.  You can declare success---waypoint achieved---when the robot gets within \unit[0.5]{m} of the given final waypoint.
 
-\section{Line Following}
-A waypoint controller attempts to achieve a final state---the waypoint position---without specifying how we get there.  A line following controller attempts to achieve a final state---the end of the line---but also specifies the path to take to get to that point.  (Line following is a specific example of a \emph{path following} controller.)  Figure~\ref{f:line} illustrates this scenario where we'd like our direct-drive robot model to follow the line described by the two endpoints, ending up at the final point ($(x_2,y_2)$).
+Submit the following:
+\begin{itemize}
+\item A graph of the x-y position reported by your model for the waypoint control simulation.
+\item Graphs of the states of your model as a function of time for waypoint control.
+\item A discussion of what is pertinent in the graphs - what do you observe that makes you think the simulation and controllers are acting appropriately?
+\end{itemize}
+\end{ex}
+
+
+\section{Line Following---Line-of-Sight Control}
+A waypoint controller attempts to achieve a final state---the waypoint position---without specifying how we get there.  A line following controller attempts to achieve a final state---the end of the line---but also specifies the path to take to get to that point.  (Line following is a specific example of a more general \emph{path following} controller.)  Figure~\ref{f:line} illustrates this scenario where we'd like our direct-drive robot model to follow the line described by the two endpoints, ending up at the final point $(x_2,y_2)$.
 
 \begin{figure}[hbt]
 \centering
@@ -72,7 +84,22 @@ A waypoint controller attempts to achieve a final state---the waypoint position-
 \label{f:line}
 \end{figure}
 
-\subsection{Geometry}
+There are many ways to solve this type of problem.  One control behavior that works well for following linear features is the \emph{line-of-sight} (LOS) algorithm.  The basic concept is as follows:
+\begin{itemize}
+\item Given the endpoints of the line-to-follow and the current position of the robot, calculate the shortest distance to the line.  This can be done by defining a line perpendicular to the line-to-follow and the solving for the intersection of the two lines: $(x_i,y_i)$.
+\item Find the point along the line-to-follow a fixed \emph{look ahead distance} ($d_{\mathrm{LOS}}$) from $(x_i,y_i)$ towards the goal point $(x_2,y_2)$.  This point is $(x_L,y_L)$.
+\item Calculate the heading goal as the angle from the current location to $(x_L,y_L)$.
+\item Use the translation (speed) and rotation (heading) controllers to move the robot towards $(x_L,y_L)$ at a given speed.
+\end{itemize}
+This geometry is illustrated in Figure~\ref{f:line_geo}.
+\begin{figure}[hbt]
+\centering
+\includegraphics[width=\FigWidth\textwidth]{uni_model_line_geo.png}
+\caption{Line following}
+\label{f:line_geo}
+\end{figure}
+
+\subsection{LOS Geometry}
 
 Slope of the line
 \[
@@ -81,7 +108,7 @@ m = \frac{y_2-y_1}{x_2-x_1}
 
 Intersection point
 \begin{align}\label{e:intersection}
-x_i & = \frac{m}{m^2+1}\left(y-y_1+m*x_1+\frac{x}{m}\right) \nonumber \\
+x_i & = \frac{m}{m^2+1}\left(y-y_1+m(x_1)+\frac{x}{m}\right) \nonumber \\
 y_i & = y_1+m(x_i-x_1) 
 \end{align}
 

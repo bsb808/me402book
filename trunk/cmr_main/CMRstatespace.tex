@@ -35,8 +35,8 @@ The continuous-time dynamics of the mathematical model are described in (\ref{e:
 where
 \begin{itemize}
 \item $\V{x}[k]$ is the $n \times 1$ state vector at time $t=k(dt)$,
-\item $\V{G}$ is the $n \times n$ system matrix,
-\item $\V{F}$ is the $n \times m$ input matrix,
+\item $\V{F}$ is the $n \times n$ system matrix,
+\item $\V{G}$ is the $n \times m$ input matrix,
 \item $\V{u}[k]$ is the $m \times 1$ input vector at time $t=k(dt)$,
 \item $\V{y}[k]$ is the $p \times 1$ output vector at time $t=k(dt)$,
 \item $\V{H}$ is the $p \times n$ output matrix, and
@@ -97,7 +97,7 @@ Once we have out model dynamics expressed in state space form (\ref{e:state-spac
 \V{x}[k+1] & = \V{x}[k] + \dot{\V{x}}[k](\dt) \nonumber \\
            & = \V{x}[k] + \left[\V{A}\V{x}[k]+\V{B}\V{u}[k]\right](\dt) \nonumber \\
            & = \left[\V{I}+\V{A}(\dt)\right]\V{x}[k] + \left[\V{B}(\dt)\right]\V{u}[k]. \nonumber \\
-\V{y}[k+1] & = \V{C}\V{x}[k+1] + \V{D}\V{u}[k]
+\V{y}[k] & = \V{C}\V{x}[k] + \V{D}\V{u}[k]
 \end{align}
 So using Euler integration our numerical approximation (\ref{e:state-spaced}) of the continuous time state space model is
 \begin{align}
@@ -121,7 +121,7 @@ Illustrate that your simulation behaves the same as your scalar implementation f
 
 \section{Control Exercises}
 
-\begin{ex}
+\begin{ex}\label{ex:state_cntrl}
 In this exercise you will develop a cruise control algorithm for the direct drive robot model in (\ref{e:direct_kinematics}) and (\ref{e:direct_kinetics}).  Use the parameters in given in Exercise~\ref{ex:direct_sim} for the model.  In addition our robot has limited actuation authority; it can supply a maximum of \unit[10]{N} of thrust and \unit[10]{N$\cdot$m} of torque.  Your controllers should attempt to minimize rise-time, overshoot and steady-state error while observing these maximums.
 
 Start by working on a heading controller.  Develop a control algorithm that takes a heading setpoint and calculates a torque to achieve the setpoint.  You can test the response of this algorithm using step inputs.  A reasonable size of the step input is $\pi/2$ radians.  To deal with any quadrant errors it is recommended that you verify your heading controller works for the following scenarios:
@@ -149,7 +149,7 @@ Now we are ready to put these two independent controllers together into a \emph{
 Submit the following:
 \begin{itemize}
 \item A short description of your heading and velocity controllers - what are your controllers doing?
-\item A graph of the x-y position of reported by your model for the final scenario.
+\item A graph of the x-y position reported by your model for the final scenario.
 \item Graphs of the states of your model as a function of time for the final scenario.
 \item A discussion of what is pertinent in the graphs - what do you observe that makes you think the simulation and controllers are acting appropriately?
 \end{itemize}
