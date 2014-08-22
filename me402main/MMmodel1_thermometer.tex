@@ -39,3 +39,42 @@ where $\tau = \frac{C}{hA}$.
 \end{itemize}
 \end{soln}
 \fi
+
+\begin{ex}
+Formulate a mathematical model of the dynamic temperature response of the LM35 termperature sensor.  You can assume the following physical paramters:
+\begin{itemize}
+\item Specific Heat: $c_p=\unitfrac[0.7]{J}{gK}$
+\item Mass: $m=\unit[1]{g}$
+\item Heat Transfer Coefficient (in water): $h=\unitfrac[1000]{W}{m^2K}$
+\item Surface Area: $A=\unit[2.0]{cm^2}$
+\end{itemize}
+Record the following:
+\begin{itemize}
+\item A first order differential equation expressed with the values given above.  This is the model for our temperature sensor.
+\item The solution to this differential equations (a function) for a step change in ambient temperature of \unit[100]{$^{\circ}$C}.
+\item A prediction of the time constant of the system with appropriate units.
+\end{itemize}
+\end{ex}
+
+\ifsolutions
+\begin{soln}
+Mathematical model is 
+\[ 
+\dot{T}(t)+\frac{hA}{C}(T(t)) = \frac{hA}{C} (T_f(t)) 
+\]
+\[ 
+\dot{T}(t)+0.286(T(t)) = 0.286 (T_f(t)) 
+\]
+Step response is 
+\[ T(t) = A\tau\left(1-e^{-t/\tau}\right)
+\]
+\[ T(t) = 0.286\left(\frac{1}{0.286}\right)\left(1-e^{-t(0.286)}\right)
+\]
+\[ T(t) = \left(1-e^{-t/3.5}\right)
+\]
+Time constant is
+\[
+\tau = \unit[\frac{1}{0.286}]{s} = \unit[3.5]{s}
+\]
+\end{soln}
+\fi
