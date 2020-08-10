@@ -1,0 +1,13 @@
+*.*~
+*.aux
+*.?glo
+*.?gls
+*.fls
+*.glg
+*.ist
+*.aux
+*.glsdefs
+*.log
+*.out
+*.toc
+*.fdb_latexmk
